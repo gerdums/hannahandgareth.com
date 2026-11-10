@@ -110,22 +110,12 @@ textarea{min-height:70px;resize:vertical}
   <section class="login card" id="loginView">
     <div>
       <h2>Welcome to the keep</h2>
-      <p class="muted">Paste your two keys once on each phone or computer. They stay on this device only.</p>
-    </div>
-    <div>
-      <label for="kCsv">Google Sheet replies link (published CSV)</label>
-      <input type="url" id="kCsv" placeholder="https://docs.google.com/spreadsheets/d/e/…/pub?output=csv" autocomplete="off">
-      <p class="help">Lets you see RSVPs here.</p>
-    </div>
-    <div>
-      <label for="kSheet">Google Sheet edit link <span class="muted">(optional)</span></label>
-      <input type="url" id="kSheet" placeholder="https://docs.google.com/spreadsheets/d/…/edit" autocomplete="off">
-      <p class="help">Adds an "Open Sheet" button for fixing or deleting replies.</p>
+      <p class="muted">Paste your GitHub key once on each phone or computer to edit party details. It stays on this device only. No key? You can still enter to open the replies Sheet.</p>
     </div>
     <div>
       <label for="kToken">GitHub access token</label>
       <input type="password" id="kToken" placeholder="github_pat_…" autocomplete="off">
-      <p class="help">Lets you edit the party details. Leave empty to only view replies.</p>
+      <p class="help">Lets you edit the party details. Leave empty to only open replies.</p>
     </div>
     <div class="actions">
       <button class="btn primary" id="signIn">Enter the keep</button>
@@ -141,30 +131,35 @@ textarea{min-height:70px;resize:vertical}
     </div>
 
     <section id="replies" role="tabpanel" aria-labelledby="tabReplies" style="display:grid;gap:16px;margin-top:16px">
-      <div class="tiles">
+      <div class="card" id="sheetCard">
+        <h2 style="font-size:20px">Replies are saved in your Google Sheet</h2>
+        <p class="muted" style="margin-bottom:12px">Every RSVP from the invite lands in "Lily Belle RSVPs" in your Google Drive. Open it to see, fix or delete replies. Share the Sheet with Hannah so she can see it too.</p>
+        <a class="btn primary" id="sheetBtn" href="#" target="_blank" rel="noopener">Open the RSVP Sheet</a>
+      </div>
+      <div class="tiles" data-csv>
         <div class="tile ok"><b id="tFam">0</b><span>Families coming</span></div>
         <div class="tile"><b id="tAdults">0</b><span>Grown-ups</span></div>
         <div class="tile"><b id="tKids">0</b><span>Little royals</span></div>
         <div class="tile no"><b id="tNo">0</b><span>Declined</span></div>
       </div>
-      <div class="toolbar">
+      <div class="toolbar" data-csv>
         <input type="search" id="search" placeholder="Search names, notes…" aria-label="Search replies">
         <button class="chip" data-filter="all" aria-pressed="true">All</button>
         <button class="chip" data-filter="yes" aria-pressed="false">Coming</button>
         <button class="chip" data-filter="no" aria-pressed="false">Declined</button>
       </div>
-      <div class="actions">
+      <div class="actions" data-csv>
         <button class="btn" id="refresh">Refresh</button>
         <a class="btn" id="openSheet" href="#" target="_blank" rel="noopener" hidden>Open Sheet</a>
         <button class="btn" id="dlCsv">Download list</button>
         <button class="btn" id="copyCount">Copy headcount</button>
         <p class="status" id="repliesStatus" aria-live="polite"></p>
       </div>
-      <ul class="list" id="list"></ul>
+      <ul class="list" id="list" data-csv></ul>
 
       <div class="card">
         <h2 style="font-size:20px">Log a reply you got by text</h2>
-        <p class="muted" style="margin-bottom:12px">It's added to the same Sheet, marked "added by host".</p>
+        <p class="muted" style="margin-bottom:12px">It's added to the RSVP Sheet, marked "added by host".</p>
         <form class="add" id="addForm" novalidate>
           <div class="full"><label for="aName">Name</label><input type="text" id="aName" maxlength="80" required></div>
           <div><label for="aAtt">Reply</label><select id="aAtt"><option value="yes">Coming</option><option value="no">Declined</option></select></div>
@@ -217,15 +212,14 @@ textarea{min-height:70px;resize:vertical}
   /* ---------- sign in ---------- */
   function enter(){
     $("loginView").hidden = true; $("app").hidden = false; $("signOut").hidden = false;
-    $("openSheet").hidden = !keys.sheet; if (keys.sheet) $("openSheet").href = keys.sheet;
+    const sheet = keys.sheet || CFG.sheetUrl; $("openSheet").hidden = !sheet; if (sheet) { $("openSheet").href = sheet; $("sheetBtn").href = sheet; } $("sheetCard").hidden = !sheet;
+    document.querySelectorAll("[data-csv]").forEach(el => el.hidden = !keys.csv);
     $("noToken").hidden = !!keys.token; $("saveDetails").disabled = !keys.token;
     loadReplies(); loadDetails();
   }
   $("signIn").onclick = async () => {
-    const k = { csv: $("kCsv").value.trim(), sheet: $("kSheet").value.trim(), token: $("kToken").value.trim() };
+    const k = { csv: "", sheet: "", token: $("kToken").value.trim() };
     const st = $("loginStatus");
-    if (!k.csv && !k.token) { st.className = "status bad"; st.textContent = "Paste at least one key."; return; }
-    if (k.csv && !/^https:\/\/docs\.google\.com\/spreadsheets\//.test(k.csv)) { st.className = "status bad"; st.textContent = "The Sheet link should start with https://docs.google.com/spreadsheets/"; return; }
     keys = k;
     if (k.token) {
       st.className = "status"; st.textContent = "Checking your GitHub key…";
