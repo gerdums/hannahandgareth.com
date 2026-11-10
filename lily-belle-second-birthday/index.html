@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Join us for Lily Belle's Royal Winter Court as she turns two! Saturday, January 9, 2027 at FunZy Indoor Playground, Santa Clarita.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Lily Belle's Royal Winter Court">
+<meta property="og:description" content="Lily Belle turns two! Saturday, January 9, 2027 · 10:00 AM – 12:30 PM · FunZy Indoor Playground, Santa Clarita. Please RSVP by December 1.">
+<meta property="og:url" content="https://hannahandgareth.com/lily-belle-second-birthday/">
+<meta property="og:image" content="https://hannahandgareth.com/lily-belle-second-birthday/hero.jpg">
+<meta property="og:image:width" content="1438">
+<meta property="og:image:height" content="914">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="robots" content="noindex">
+<title>Lily Belle's Royal Winter Court</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Noto+Serif:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* Layout: one framed invitation card, then an RSVP card in the same frame language; host tools appear below for the owner only. */
+:root{
+  --navy:#1c2a4f;
+  --ink:#2e3a5c;
+  --gold:#a8843f;
+  --gold-soft:#d7bf8a;
+  --paper:#f7f3ea;
+  --mist:#ece6d7;
+  --ok:#3f6b4a;
+  --warn:#9a4a3a;
+  --display:"Playfair Display", Georgia, "Times New Roman", serif;
+  --body:"Noto Serif", Georgia, "Times New Roman", serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:#e9e3d4;color:var(--ink);font-family:var(--body);line-height:1.5;padding:24px 16px 64px}
+.wrap{max-width:720px;margin:0 auto;display:grid;gap:28px}
+.card{background:var(--paper);border:6px solid var(--navy);padding:14px;box-shadow:0 18px 40px -24px rgba(28,42,79,.45)}
+.card-inner{border:1.5px solid var(--gold);padding:clamp(16px,4vw,28px)}
+.hero{display:block;width:100%;max-width:100%;height:auto;border:2px solid var(--gold)}
+.invite{text-align:center;padding-top:28px;display:grid;gap:6px;justify-items:center}
+.eyebrow{font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);font-size:clamp(11px,2.4vw,15px);margin:0}
+h1{font-family:var(--display);color:var(--navy);font-size:clamp(48px,12vw,84px);line-height:1;margin:8px 0 0;text-wrap:balance}
+.court{font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-size:clamp(20px,5vw,34px);margin:0}
+.rule{display:flex;align-items:center;gap:10px;margin:12px 0;color:var(--gold)}
+.rule span{height:1.5px;width:min(28vw,180px);background:var(--gold-soft)}
+.rule i{width:10px;height:10px;background:var(--gold);transform:rotate(45deg)}
+.turns{font-style:italic;font-size:clamp(24px,5vw,32px);color:var(--ink);margin:0}
+.date{font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--navy);font-size:clamp(20px,4.6vw,28px);margin:10px 0 0}
+.time{font-size:clamp(18px,4vw,22px);margin:0}
+.venue{font-weight:700;color:var(--navy);font-size:clamp(19px,4.2vw,24px);margin:14px 0 0}
+.addr{margin:0;font-size:clamp(15px,3.4vw,18px)}
+.dress{font-style:italic;margin:12px 0 0;font-size:clamp(16px,3.6vw,19px);max-width:30em;text-wrap:balance}
+.actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:16px}
+.btn{font:inherit;font-weight:600;font-size:15px;border-radius:999px;padding:10px 18px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--navy);background:transparent;color:var(--navy);transition:background .15s,color .15s}
+.btn:hover{background:var(--navy);color:var(--paper)}
+.btn.primary{background:var(--navy);color:var(--paper)}
+.btn.primary:hover{background:#111b36}
+.btn.gold{border-color:var(--gold);color:#7a5e26}
+.btn.gold:hover{background:var(--gold);color:var(--paper)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn:focus-visible,input:focus-visible,textarea:focus-visible,.choice input:focus-visible+span{outline:3px solid var(--gold);outline-offset:2px}
+.countdown{margin:18px 0 0;font-size:15px;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;font-weight:600}
+.sign{font-style:italic;color:var(--gold);font-size:20px;margin:16px 0 0}
+
+h2{font-family:var(--display);color:var(--navy);font-size:clamp(28px,6vw,38px);margin:0;text-align:center;text-wrap:balance}
+.sub{text-align:center;margin:4px 0 20px}
+.sub strong{color:var(--navy)}
+form{display:grid;gap:18px}
+label,.legend{font-weight:600;color:var(--navy);font-size:15px;display:block;margin-bottom:6px}
+.hint{font-weight:400;color:#6a6f80;font-size:13px}
+input[type=text],input[type=tel],textarea{width:100%;font:inherit;font-size:16px;color:var(--ink);background:#fffdf8;border:1.5px solid #cdbf9f;border-radius:6px;padding:10px 12px}
+textarea{min-height:76px;resize:vertical}
+fieldset{border:0;margin:0;padding:0}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.choice{position:relative}
+.choice input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.choice span{display:block;text-align:center;padding:14px 10px;border:1.5px solid #cdbf9f;border-radius:8px;background:#fffdf8;font-weight:600;color:var(--navy)}
+.choice span small{display:block;font-weight:400;font-style:italic;color:#6a6f80;font-size:13px}
+.choice input:checked+span{border-color:var(--navy);background:var(--navy);color:var(--paper)}
+.choice input:checked+span small{color:var(--gold-soft)}
+.counts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stepper{display:flex;align-items:center;border:1.5px solid #cdbf9f;border-radius:8px;background:#fffdf8;overflow:hidden}
+.stepper button{font:inherit;font-size:22px;width:46px;height:46px;border:0;background:var(--mist);color:var(--navy);cursor:pointer}
+.stepper button:hover{background:var(--gold-soft)}
+.stepper output{flex:1;text-align:center;font-size:20px;font-weight:700;color:var(--navy);font-variant-numeric:tabular-nums}
+.only-yes[hidden]{display:none}
+.err{color:var(--warn);font-size:14px;margin:0}
+.submit-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+
+.panel{border:1.5px dashed var(--gold);border-radius:10px;padding:18px;background:#fffdf8;display:grid;gap:12px}
+.panel h3{margin:0;font-family:var(--display);color:var(--navy);font-size:22px}
+.preview{white-space:pre-wrap;font-size:14px;background:var(--mist);border-radius:6px;padding:12px;margin:0;color:var(--ink)}
+.ok{color:var(--ok);font-weight:600}
+.small{font-size:13px;color:#6a6f80;margin:0}
+
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.tile{background:#fffdf8;border:1.5px solid #e0d4b6;border-radius:8px;padding:12px;text-align:center}
+.tile b{display:block;font-family:var(--display);font-size:32px;color:var(--navy);font-variant-numeric:tabular-nums;line-height:1.1}
+.tile span{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.list{display:grid;gap:8px;margin:0;padding:0;list-style:none}
+.row{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:start;background:#fffdf8;border:1px solid #e0d4b6;border-left:5px solid var(--ok);border-radius:6px;padding:10px 12px}
+.row.no{border-left-color:var(--warn)}
+.pill{font-size:12px;font-weight:700;padding:2px 8px;border-radius:999px;background:var(--mist);color:var(--navy);white-space:nowrap}
+.row .who{font-weight:700;color:var(--navy)}
+.row .meta{font-size:13px;color:#6a6f80}
+.row .note{font-size:14px;font-style:italic;margin-top:2px}
+.link{background:none;border:0;color:var(--warn);font:inherit;font-size:13px;cursor:pointer;text-decoration:underline}
+.log{display:grid;grid-template-columns:2fr 1fr 1fr 1fr auto;gap:8px;align-items:end}
+.log input[type=number]{width:100%;font:inherit;font-size:16px;border:1.5px solid #cdbf9f;border-radius:6px;padding:9px 8px;background:#fffdf8}
+.log select{width:100%;font:inherit;font-size:15px;border:1.5px solid #cdbf9f;border-radius:6px;padding:9px 6px;background:#fffdf8}
+.empty{text-align:center;font-style:italic;color:#6a6f80;margin:0}
+@media (max-width:560px){
+  .tiles{grid-template-columns:repeat(2,1fr)}
+  .log{grid-template-columns:1fr 1fr}
+  .log .wide{grid-column:1/-1}
+  .choices{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<main class="wrap">
+
+  <article class="card" aria-label="Invitation">
+    <div class="card-inner">
+      <img class="hero" src="hero.jpg" width="1438" height="914" alt="A snowy forest at night with a glowing castle, a gold crown on a navy velvet pillow, and a fox, bunny, owl, squirrel and hedgehog in the snow.">
+      <div class="invite">
+        <p class="eyebrow">You are cordially invited to</p>
+        <h1>Lily Belle's</h1>
+        <p class="court">Royal Winter Court</p>
+        <div class="rule" aria-hidden="true"><span></span><i></i><span></span></div>
+        <p class="turns">as she turns two!</p>
+        <p class="date">Saturday, January 9, 2027</p>
+        <p class="time">10:00 AM – 12:30 PM</p>
+        <p class="venue">FunZy Indoor Playground</p>
+        <p class="addr">20655 Soledad Canyon Rd #24 · Santa Clarita</p>
+        <p class="dress">Little royals are welcome to dress up: princesses, dragons, fairies &amp; knights!</p>
+        <div class="actions">
+          <a class="btn primary" href="#rsvp">RSVP</a>
+          <a class="btn" id="calLink" target="_blank" rel="noopener">Add to Google Calendar</a>
+          <a class="btn" href="https://www.google.com/maps/search/?api=1&query=FunZy+Indoor+Playground+20655+Soledad+Canyon+Rd+%2324+Santa+Clarita+CA" target="_blank" rel="noopener">Directions</a>
+        </div>
+        <p class="countdown" id="countdown"></p>
+        <div class="rule" aria-hidden="true"><span></span><i></i><span></span></div>
+        <p class="sign">Hannah, Gareth &amp; Lily Belle</p>
+      </div>
+    </div>
+  </article>
+
+  <section class="card" id="rsvp" aria-labelledby="rsvpTitle">
+    <div class="card-inner">
+      <h2 id="rsvpTitle">Reply to the Royal Court</h2>
+      <p class="sub">Please RSVP by <strong>Tuesday, December 1</strong>. <span id="deadlineNote"></span></p>
+
+      <form id="rsvpForm" novalidate>
+        <div>
+          <label for="fName">Your name or family name</label>
+          <input type="text" id="fName" name="name" autocomplete="name" placeholder="e.g. The Ramirez family" maxlength="80" required>
+        </div>
+
+        <fieldset>
+          <legend class="legend">Will you join us?</legend>
+          <div class="choices">
+            <label class="choice"><input type="radio" name="attending" id="attYes" value="yes"><span>Joyfully accepts<small>We'll be there</small></span></label>
+            <label class="choice"><input type="radio" name="attending" id="attNo" value="no"><span>Regretfully declines<small>Sending birthday wishes</small></span></label>
+          </div>
+        </fieldset>
+
+        <div class="only-yes" id="yesFields" hidden>
+          <div class="counts">
+            <div>
+              <span class="legend" id="adultsLbl">Grown-ups</span>
+              <div class="stepper" role="group" aria-labelledby="adultsLbl">
+                <button type="button" id="adultsMinus" aria-label="One fewer grown-up">−</button>
+                <output id="adultsOut" aria-live="polite">2</output>
+                <button type="button" id="adultsPlus" aria-label="One more grown-up">+</button>
+              </div>
+            </div>
+            <div>
+              <span class="legend" id="kidsLbl">Little royals</span>
+              <div class="stepper" role="group" aria-labelledby="kidsLbl">
+                <button type="button" id="kidsMinus" aria-label="One fewer child">−</button>
+                <output id="kidsOut" aria-live="polite">1</output>
+                <button type="button" id="kidsPlus" aria-label="One more child">+</button>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top:18px">
+            <label for="fKidNames">Little royals' names &amp; ages <span class="hint">(optional)</span></label>
+            <input type="text" id="fKidNames" maxlength="160" placeholder="e.g. Mia (3), Leo (1)">
+          </div>
+          <div style="margin-top:18px">
+            <label for="fNotes">Allergies or anything we should know <span class="hint">(optional)</span></label>
+            <input type="text" id="fNotes" maxlength="200" placeholder="e.g. nut allergy">
+          </div>
+        </div>
+
+        <div>
+          <label for="fMsg">A birthday wish for Lily Belle <span class="hint">(optional)</span></label>
+          <textarea id="fMsg" maxlength="400" placeholder="Happy 2nd birthday, little princess!"></textarea>
+        </div>
+
+        <p class="err" id="formErr" role="alert" hidden></p>
+        <div class="submit-row">
+          <button type="submit" class="btn primary" id="submitBtn">Send my RSVP</button>
+        </div>
+      </form>
+
+      <div class="panel" id="savedPanel" hidden aria-live="polite">
+        <h3>Thank you!</h3>
+        <p class="ok" id="savedText"></p>
+        <p class="small">Plans changed? Update the form above and send it again any time before December 1.</p>
+      </div>
+
+      <div class="panel" id="textPanel" hidden aria-live="polite">
+        <h3>Last step: text it to Hannah</h3>
+        <p class="small">Your reply is ready. Tap the button to open Messages with it filled in, or copy it and send it to <strong>(661) 718-6474</strong>.</p>
+        <pre class="preview" id="smsPreview"></pre>
+        <div class="submit-row">
+          <a class="btn primary" id="smsLink" href="#">Open in Messages</a>
+          <button type="button" class="btn gold" id="copyBtn">Copy message</button>
+        </div>
+        <p class="small" id="copyNote" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="card" id="host" hidden aria-labelledby="hostTitle">
+    <div class="card-inner" style="display:grid;gap:18px">
+      <div>
+        <h2 id="hostTitle">Guest list</h2>
+        <p class="sub" style="margin-bottom:0">Only you and editors you invite can see this. RSVPs sent from this page appear automatically; log text replies below.</p>
+      </div>
+      <div class="tiles">
+        <div class="tile"><b id="tFam">0</b><span>Families coming</span></div>
+        <div class="tile"><b id="tAdults">0</b><span>Grown-ups</span></div>
+        <div class="tile"><b id="tKids">0</b><span>Little royals</span></div>
+        <div class="tile"><b id="tNo">0</b><span>Declined</span></div>
+      </div>
+      <p class="small" id="hostStatus"></p>
+
+      <form id="logForm" class="log" novalidate>
+        <div class="wide"><label for="lName">Log a text reply</label><input type="text" id="lName" maxlength="80" placeholder="Family name" required></div>
+        <div><label for="lAtt">Reply</label><select id="lAtt"><option value="yes">Coming</option><option value="no">Declined</option></select></div>
+        <div><label for="lAdults">Adults</label><input type="number" id="lAdults" min="0" max="20" value="2"></div>
+        <div><label for="lKids">Kids</label><input type="number" id="lKids" min="0" max="20" value="1"></div>
+        <div><button class="btn primary" type="submit" id="logBtn">Add</button></div>
+      </form>
+
+      <ul class="list" id="guestList"></ul>
+      <div class="submit-row"><button type="button" class="btn gold" id="copyList">Copy guest list</button></div>
+      <p class="small" id="copyListNote" aria-live="polite"></p>
+    </div>
+  </section>
+
+</main>
+
+<script>
+(function(){
+  const PHONE = "+16617186474";
+  const PARTY = new Date("2027-01-09T10:00:00-08:00");
+  const DEADLINE = new Date("2026-12-02T00:00:00-08:00");
+  const $ = id => document.getElementById(id);
+
+  // Calendar link
+  const cal = new URL("https://calendar.google.com/calendar/render");
+  cal.searchParams.set("action","TEMPLATE");
+  cal.searchParams.set("text","Lily Belle's 2nd Birthday – Royal Winter Court");
+  cal.searchParams.set("dates","20270109T100000/20270109T123000");
+  cal.searchParams.set("ctz","America/Los_Angeles");
+  cal.searchParams.set("location","FunZy Indoor Playground, 20655 Soledad Canyon Rd #24, Santa Clarita, CA");
+  cal.searchParams.set("details","Little royals are welcome to dress up: princesses, dragons, fairies & knights! RSVP by Dec 1 – text Hannah (661) 718-6474.");
+  $("calLink").href = cal.toString();
+
+  // Countdown
+  function countdown(){
+    const now = new Date();
+    const days = Math.ceil((PARTY - now)/86400000);
+    $("countdown").textContent = days > 1 ? days + " days until the royal celebration"
+      : days === 1 ? "Tomorrow is the royal celebration!"
+      : (now < new Date(PARTY.getTime()+9000000)) ? "The royal celebration is today!" : "Thank you for celebrating with us!";
+    if (now > DEADLINE) $("deadlineNote").textContent = "The date has passed, but late replies are still welcome.";
+  }
+  countdown();
+
+  // Form state
+  const state = { adults:2, kids:1 };
+  function step(key, d, min){
+    state[key] = Math.max(min, Math.min(20, state[key]+d));
+    $(key+"Out").textContent = state[key];
+  }
+  $("adultsMinus").onclick = () => step("adults",-1,0);
+  $("adultsPlus").onclick = () => step("adults",1,0);
+  $("kidsMinus").onclick = () => step("kids",-1,0);
+  $("kidsPlus").onclick = () => step("kids",1,0);
+  document.querySelectorAll('input[name=attending]').forEach(r => r.addEventListener("change", () => {
+    $("yesFields").hidden = !$("attYes").checked;
+  }));
+
+  function readForm(){
+    const att = $("attYes").checked ? "yes" : $("attNo").checked ? "no" : "";
+    return {
+      name: $("fName").value.trim(),
+      attending: att,
+      adults: att === "yes" ? state.adults : 0,
+      kids: att === "yes" ? state.kids : 0,
+      kidNames: att === "yes" ? $("fKidNames").value.trim() : "",
+      notes: att === "yes" ? $("fNotes").value.trim() : "",
+      message: $("fMsg").value.trim()
+    };
+  }
+  function fillForm(r){
+    $("fName").value = r.name || "";
+    if (r.attending === "yes") $("attYes").checked = true;
+    if (r.attending === "no") $("attNo").checked = true;
+    $("yesFields").hidden = r.attending !== "yes";
+    if (typeof r.adults === "number" && r.attending === "yes") { state.adults = r.adults; $("adultsOut").textContent = r.adults; }
+    if (typeof r.kids === "number" && r.attending === "yes") { state.kids = r.kids; $("kidsOut").textContent = r.kids; }
+    $("fKidNames").value = r.kidNames || "";
+    $("fNotes").value = r.notes || "";
+    $("fMsg").value = r.message || "";
+  }
+  function plural(n, one, many){ return n + " " + (n === 1 ? one : many); }
+  function summary(r){
+    return r.attending === "yes"
+      ? "Coming: " + plural(r.adults,"grown-up","grown-ups") + " and " + plural(r.kids,"little royal","little royals")
+      : "Can't make it";
+  }
+  function smsText(r){
+    const lines = ["RSVP for Lily Belle's Royal Winter Court (Jan 9)", "From: " + r.name];
+    if (r.attending === "yes") {
+      lines.push("We'll be there! " + plural(r.adults,"adult","adults") + ", " + plural(r.kids,"child","children"));
+      if (r.kidNames) lines.push("Kids: " + r.kidNames);
+      if (r.notes) lines.push("Note: " + r.notes);
+    } else {
+      lines.push("Sorry, we can't make it.");
+    }
+    if (r.message) lines.push("For Lily Belle: " + r.message);
+    return lines.join("\n");
+  }
+
+  // Remember a guest's draft in this browser only
+  const LS = "lb-royal-rsvp";
+  try { const saved = JSON.parse(localStorage.getItem(LS) || "null"); if (saved) fillForm(saved); } catch(e){}
+  function remember(r){ try { localStorage.setItem(LS, JSON.stringify(r)); } catch(e){} }
+
+  // Capabilities
+  let db = null, uid = null, canSave = null, myRef = null;
+
+  function showText(r){
+    $("savedPanel").hidden = true;
+    $("smsPreview").textContent = smsText(r);
+    $("smsLink").href = "sms:" + PHONE + "?&body=" + encodeURIComponent(smsText(r));
+    $("copyNote").textContent = "";
+    $("textPanel").hidden = false;
+    $("textPanel").scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block:"nearest"});
+  }
+  function showSaved(r){
+    $("textPanel").hidden = true;
+    $("savedText").textContent = "Your RSVP is saved. " + summary(r) + ".";
+    $("savedPanel").hidden = false;
+  }
+
+  $("copyBtn").onclick = async () => {
+    try { await navigator.clipboard.writeText($("smsPreview").textContent); $("copyNote").textContent = "Copied. Paste it into a text to (661) 718-6474."; }
+    catch(e){ $("copyNote").textContent = "Couldn't copy here. Select the message above and copy it by hand."; }
+  };
+
+  $("rsvpForm").addEventListener("submit", async ev => {
+    ev.preventDefault();
+    const r = readForm();
+    const err = $("formErr");
+    if (!r.name) { err.textContent = "Please add your name so Hannah knows who's replying."; err.hidden = false; $("fName").focus(); return; }
+    if (!r.attending) { err.textContent = "Please choose whether you can come."; err.hidden = false; return; }
+    if (r.attending === "yes" && r.adults + r.kids === 0) { err.textContent = "Add at least one grown-up or little royal."; err.hidden = false; return; }
+    err.hidden = true;
+    remember(r);
+    if (myRef && canSave !== false) {
+      const btn = $("submitBtn"); btn.disabled = true; btn.textContent = "Sending…";
+      try {
+        await myRef.set(Object.assign({}, r, { source:"online", updatedAt: new Date().toISOString() }));
+        showSaved(r);
+        btn.textContent = "Update my RSVP";
+      } catch(e) {
+        canSave = false;
+        btn.textContent = "Send my RSVP";
+        showText(r);
+      } finally { btn.disabled = false; }
+    } else {
+      showText(r);
+    }
+  });
+
+  // Host view
+  let online = [], logged = [], hostReady = false;
+  function esc(s){ return String(s == null ? "" : s); }
+  function renderHost(){
+    const all = online.map(d => Object.assign({ _src:"online" }, d)).concat(logged.map(d => Object.assign({ _src:"text" }, d)));
+    all.sort((a,b) => (b.updatedAt||"").localeCompare(a.updatedAt||""));
+    const yes = all.filter(r => r.attending === "yes");
+    $("tFam").textContent = yes.length;
+    $("tAdults").textContent = yes.reduce((s,r) => s + (Number(r.adults)||0), 0);
+    $("tKids").textContent = yes.reduce((s,r) => s + (Number(r.kids)||0), 0);
+    $("tNo").textContent = all.filter(r => r.attending === "no").length;
+    const ul = $("guestList"); ul.textContent = "";
+    if (!all.length) {
+      const li = document.createElement("li"); li.className = "empty"; li.textContent = "No replies yet. They'll appear here as they come in."; ul.appendChild(li);
+    }
+    all.forEach(r => {
+      const li = document.createElement("li"); li.className = "row" + (r.attending === "no" ? " no" : "");
+      const pill = document.createElement("span"); pill.className = "pill"; pill.textContent = r.attending === "yes" ? "Coming" : "Declined";
+      const mid = document.createElement("div");
+      const who = document.createElement("div"); who.className = "who"; who.textContent = esc(r.name) || "Unnamed guest";
+      const meta = document.createElement("div"); meta.className = "meta";
+      const bits = [];
+      if (r.attending === "yes") bits.push(plural(Number(r.adults)||0,"adult","adults"), plural(Number(r.kids)||0,"kid","kids"));
+      bits.push(r._src === "online" ? "via this page" : "by text");
+      if (r.updatedAt) { const d = new Date(r.updatedAt); if (!isNaN(d)) bits.push(d.toLocaleDateString(undefined,{month:"short",day:"numeric"})); }
+      meta.textContent = bits.join(" · ");
+      mid.append(who, meta);
+      [["kidNames","Kids: "],["notes","Note: "],["message","Wish: "]].forEach(([k,p]) => {
+        if (r[k]) { const n = document.createElement("div"); n.className = "note"; n.textContent = p + esc(r[k]); mid.appendChild(n); }
+      });
+      const right = document.createElement("div");
+      const del = document.createElement("button"); del.type = "button"; del.className = "link"; del.textContent = "Remove";
+      del.setAttribute("aria-label","Remove " + (esc(r.name) || "this reply"));
+      del.onclick = async () => {
+        del.disabled = true;
+        try { await db.doc((r._src === "online" ? "rsvps/" : "hostlog/") + r._id).delete(); }
+        catch(e){ del.disabled = false; $("hostStatus").textContent = "Couldn't remove that reply. Try again."; }
+      };
+      right.appendChild(del);
+      li.append(pill, mid, right); ul.appendChild(li);
+    });
+  }
+  function listText(){
+    const all = online.concat(logged);
+    const yes = all.filter(r => r.attending === "yes"), no = all.filter(r => r.attending === "no");
+    const A = yes.reduce((s,r)=>s+(Number(r.adults)||0),0), K = yes.reduce((s,r)=>s+(Number(r.kids)||0),0);
+    const out = ["Lily Belle's Royal Winter Court – guest list", yes.length + " families coming · " + A + " adults · " + K + " kids · " + no.length + " declined", "", "COMING"];
+    yes.forEach(r => out.push("- " + r.name + " (" + (r.adults||0) + " adults, " + (r.kids||0) + " kids)" + (r.notes ? " – " + r.notes : "")));
+    out.push("", "DECLINED"); no.forEach(r => out.push("- " + r.name));
+    return out.join("\n");
+  }
+  $("copyList").onclick = async () => {
+    try { await navigator.clipboard.writeText(listText()); $("copyListNote").textContent = "Guest list copied."; }
+    catch(e){ $("copyListNote").textContent = "Couldn't copy here."; }
+  };
+  $("logForm").addEventListener("submit", async ev => {
+    ev.preventDefault();
+    const name = $("lName").value.trim(); if (!name) { $("lName").focus(); return; }
+    const att = $("lAtt").value;
+    const rec = { name, attending: att, adults: att === "yes" ? Math.max(0, Number($("lAdults").value)||0) : 0, kids: att === "yes" ? Math.max(0, Number($("lKids").value)||0) : 0, source:"text", updatedAt:new Date().toISOString() };
+    const btn = $("logBtn"); btn.disabled = true;
+    try { await db.collection("hostlog").add(rec); $("lName").value = ""; $("hostStatus").textContent = ""; }
+    catch(e){ $("hostStatus").textContent = e && e.code === "quota_exceeded" ? "The guest list is full." : "Couldn't save that reply. Try again."; }
+    finally { btn.disabled = false; }
+  });
+
+  function startHost(){
+    $("host").hidden = false;
+    renderHost();
+    $("hostStatus").textContent = "Loading replies…";
+    const timer = setTimeout(() => { $("hostStatus").textContent = "Replies can't be reached right now; this list may be out of date."; }, 10000);
+    let got = 0;
+    const done = () => { if (++got >= 2) { clearTimeout(timer); $("hostStatus").textContent = ""; } };
+    let a = false, b = false;
+    db.collection("rsvps").onSnapshot(s => { online = s.docs.map(d => Object.assign({ _id:d.id }, d.data())); renderHost(); if (!s.metadata.fromCache && !a) { a = true; done(); } }, () => { if (!a) { a = true; done(); } });
+    db.collection("hostlog").onSnapshot(s => { logged = s.docs.map(d => Object.assign({ _id:d.id }, d.data())); renderHost(); if (!s.metadata.fromCache && !b) { b = true; done(); } }, () => { if (!b) { b = true; done(); } });
+  }
+
+  (async () => {
+    if (!window.claude || !window.claude.use) return;
+    let user = null;
+    try { [db, user] = await Promise.all([claude.use("db"), claude.use("user")]); } catch(e){ return; }
+    if (!db) return;
+    uid = user ? await user.id() : null;
+    const isHost = user ? (await user.isOwner()) || (await user.canEdit()) : false;
+    const w = user ? await user.can("data.write") : null;
+    if (uid && w !== false) {
+      canSave = w;
+      myRef = db.doc("rsvps/" + uid);
+      try {
+        const snap = await myRef.get();
+        if (snap.exists) { const r = snap.data(); fillForm(r); showSaved(r); $("submitBtn").textContent = "Update my RSVP"; }
+      } catch(e){}
+    }
+    if (isHost) startHost();
+  })();
+})();
+</script>
+</body>
+</html>
