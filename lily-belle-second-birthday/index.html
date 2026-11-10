@@ -137,6 +137,9 @@ main{position:relative;z-index:3;width:min(100% - 32px, 720px);margin:36px auto 
 .fact .big{font-family:var(--display);font-weight:700;font-size:clamp(20px,4.6vw,24px);color:var(--ink);line-height:1.2}
 .fact.wide{grid-column:1/-1}
 .dress{font-style:italic}
+.tlink{color:var(--ink);font-weight:700;text-decoration-color:var(--gold);text-underline-offset:3px}
+.tlink:hover{color:var(--gold)}
+.waiver{background:#f4ecd8;border-radius:12px;padding:14px 16px}
 .actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:26px}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:700;font-size:15px;border-radius:999px;padding:12px 20px;cursor:pointer;text-decoration:none;border:1.5px solid var(--ink);background:transparent;color:var(--ink);transition:transform .2s cubic-bezier(.3,1.6,.5,1),background .15s,color .15s}
 .btn:hover{transform:translateY(-2px)}
@@ -273,10 +276,17 @@ footer{position:relative;z-index:3;margin-top:70px;text-align:center;color:var(-
           <h3>Where</h3>
           <p class="big" data-f="venueName">FunZy Indoor Playground</p>
           <p><span data-f="venueAddress">20655 Soledad Canyon Rd #24</span> · <span data-f="venueCity">Santa Clarita, CA</span></p>
+          <p><a class="tlink" id="venueLink" href="https://funzyplayground.com/" target="_blank" rel="noopener">Visit FunZy's website</a></p>
         </div>
         <div class="fact wide">
           <h3>Dress code</h3>
           <p class="dress" data-f="dressCode">Little royals are welcome to dress up: princesses, dragons, fairies &amp; knights!</p>
+        </div>
+        <div class="fact wide waiver" id="waiverBox">
+          <h3>Before you come</h3>
+          <p>Please sign FunZy's liability waiver for your family ahead of time so you can head straight in to play.</p>
+          <p style="margin-top:10px"><a class="btn gold" id="waiverLink" href="https://funzyplayground.com/pages/liability-waiver" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M9 15l2 2 4-4"/></svg>Sign the waiver</a></p>
         </div>
       </div>
 
@@ -316,7 +326,7 @@ footer{position:relative;z-index:3;margin-top:70px;text-align:center;color:var(-
         <div class="yes-only" id="yesFields" hidden>
           <div class="counts">
             <div>
-              <span class="legend" id="adultsLbl">Grown-ups</span>
+              <span class="legend" id="adultsLbl">How many adults?</span>
               <div class="stepper" role="group" aria-labelledby="adultsLbl">
                 <button type="button" data-step="adults" data-d="-1" aria-label="One fewer grown-up">−</button>
                 <output id="adultsOut" aria-live="polite">2</output>
@@ -324,7 +334,7 @@ footer{position:relative;z-index:3;margin-top:70px;text-align:center;color:var(-
               </div>
             </div>
             <div>
-              <span class="legend" id="kidsLbl">Little royals</span>
+              <span class="legend" id="kidsLbl">How many children?</span>
               <div class="stepper" role="group" aria-labelledby="kidsLbl">
                 <button type="button" data-step="kids" data-d="-1" aria-label="One fewer child">−</button>
                 <output id="kidsOut" aria-live="polite">1</output>
@@ -436,6 +446,8 @@ footer{position:relative;z-index:3;margin-top:70px;text-align:center;color:var(-
     $("rsvpByShort").textContent = LB.fmt.weekday(EV.rsvpBy) + ", " + LB.fmt.monthDay(EV.rsvpBy);
     $("calLink").href = LB.calendarUrl(EV);
     $("mapLink").href = LB.mapsUrl(EV);
+    $("venueLink").hidden = !EV.venueUrl; if (EV.venueUrl) { $("venueLink").href = EV.venueUrl; $("venueLink").textContent = "Visit " + EV.venueName.split(" ")[0] + "'s website"; }
+    $("waiverBox").hidden = !EV.waiverUrl; if (EV.waiverUrl) $("waiverLink").href = EV.waiverUrl;
     $("announce").hidden = !EV.announcement;
     $("announceText").textContent = EV.announcement || "";
     $("fMsg").placeholder = "Happy birthday, " + EV.childName + "!";

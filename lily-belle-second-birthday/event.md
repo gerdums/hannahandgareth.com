@@ -8,6 +8,8 @@ endTime: 12:30
 venueName: FunZy Indoor Playground
 venueAddress: 20655 Soledad Canyon Rd #24
 venueCity: Santa Clarita, CA
+venueUrl: https://funzyplayground.com/
+waiverUrl: https://funzyplayground.com/pages/liability-waiver
 dressCode: Little royals are welcome to dress up: princesses, dragons, fairies & knights!
 rsvpBy: 2026-12-01
 hostName: Hannah
