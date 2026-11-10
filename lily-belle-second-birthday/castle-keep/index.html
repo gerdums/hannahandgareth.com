@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Castle Keep</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#141d38">
+<link rel="icon" href="../assets/crown.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Noto+Serif:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* Layout: a working ledger. Night header with the crown, then tabs: Replies (tiles + list) and Party details (form). */
+:root{
+  --night:#141d38;
+  --parchment:#fbf6ea;
+  --paper:#fffdf7;
+  --ink:#24305a;
+  --gold:#b08a42;
+  --gold-bright:#e6c77f;
+  --line:#e3d8bd;
+  --ok:#3d6b55;
+  --no:#9c4636;
+  --muted:#6a6f80;
+  --display:"Playfair Display", Georgia, serif;
+  --body:"Noto Serif", Georgia, serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--parchment);color:var(--ink);font-family:var(--body);line-height:1.5}
+header{background:var(--night);color:var(--parchment);padding:max(18px, env(safe-area-inset-top)) 16px 18px}
+.bar{max-width:960px;margin:0 auto;display:flex;align-items:center;gap:14px}
+.bar img{width:52px;height:auto}
+.bar h1{margin:0;font-family:var(--display);font-size:24px;line-height:1.1}
+.bar p{margin:0;color:var(--gold-bright);font-size:13px;letter-spacing:.14em;text-transform:uppercase}
+.bar .spacer{flex:1}
+.linkish{background:none;border:0;color:var(--gold-bright);font:inherit;font-size:14px;cursor:pointer;text-decoration:underline;padding:6px}
+main{max-width:960px;margin:0 auto;padding:20px 16px 60px;display:grid;gap:20px}
+.tabs{display:flex;gap:6px;border-bottom:1.5px solid var(--line)}
+.tabs button{font:inherit;font-weight:700;font-size:15px;background:none;border:0;padding:10px 14px;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-1.5px}
+.tabs button[aria-selected=true]{color:var(--ink);border-bottom-color:var(--gold)}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:18px}
+h2{margin:0 0 4px;font-family:var(--display);font-size:24px}
+.muted{color:var(--muted);font-size:14px;margin:0}
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.tile{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px;text-align:center}
+.tile b{display:block;font-family:var(--display);font-size:36px;line-height:1.05;font-variant-numeric:tabular-nums}
+.tile span{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-weight:700}
+.tile.ok b{color:var(--ok)} .tile.no b{color:var(--no)}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.toolbar input[type=search]{flex:1;min-width:180px}
+.chip{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:6px 12px;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:var(--parchment)}
+.list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.row{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:start;background:var(--paper);border:1px solid var(--line);border-left:5px solid var(--ok);border-radius:10px;padding:12px 14px}
+.row.no{border-left-color:var(--no)}
+.pill{font-size:12px;font-weight:700;border-radius:999px;padding:3px 9px;white-space:nowrap;background:#e7f0ea;color:var(--ok)}
+.row.no .pill{background:#f6e6e2;color:var(--no)}
+.who{font-weight:700}
+.meta{font-size:13px;color:var(--muted)}
+.note{font-size:14px;margin-top:3px}
+.note em{color:var(--muted);font-style:normal;font-weight:600}
+.count{font-family:var(--display);font-weight:800;font-size:20px;white-space:nowrap;font-variant-numeric:tabular-nums;text-align:right}
+.count small{display:block;font-family:var(--body);font-weight:400;font-size:12px;color:var(--muted)}
+.empty{text-align:center;color:var(--muted);font-style:italic;padding:20px}
+label{display:block;font-weight:700;font-size:14px;margin-bottom:5px}
+input[type=text],input[type=tel],input[type=date],input[type=time],input[type=url],input[type=password],input[type=search],input[type=number],textarea,select{width:100%;font:inherit;font-size:16px;color:var(--ink);background:#fff;border:1.5px solid #d6c9a8;border-radius:9px;padding:10px 12px}
+textarea{min-height:70px;resize:vertical}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid .full{grid-column:1/-1}
+.check{display:flex;gap:10px;align-items:center;font-weight:700}
+.check input{width:22px;height:22px;accent-color:var(--ink)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:inherit;font-weight:700;font-size:15px;border-radius:999px;padding:10px 18px;cursor:pointer;text-decoration:none;border:1.5px solid var(--ink);background:transparent;color:var(--ink)}
+.btn.primary{background:var(--ink);color:var(--parchment)}
+.btn:disabled{opacity:.55;cursor:wait}
+.actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.status{font-size:14px;margin:0}
+.status.ok{color:var(--ok)} .status.bad{color:var(--no)}
+.help{font-size:14px;color:var(--muted);margin:4px 0 0}
+.help a{color:var(--ink)}
+.login{max-width:520px;margin:30px auto 0;display:grid;gap:16px}
+.btn:focus-visible,input:focus-visible,textarea:focus-visible,.chip:focus-visible,.tabs button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.add{display:grid;grid-template-columns:2fr 1fr 1fr 1fr auto;gap:8px;align-items:end}
+[hidden]{display:none!important}
+@media (max-width:640px){
+  .tiles{grid-template-columns:repeat(2,1fr)}
+  .grid{grid-template-columns:1fr}
+  .add{grid-template-columns:1fr 1fr}
+  .add .full{grid-column:1/-1}
+  .row{grid-template-columns:1fr auto}
+  .row .pill{grid-column:1/-1;justify-self:start}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="bar">
+    <img src="../assets/crown.png" alt="">
+    <div><p>Castle Keep</p><h1 id="hdr">Lily Belle's party</h1></div>
+    <span class="spacer"></span>
+    <a class="linkish" href="../">View invite</a>
+    <button class="linkish" id="signOut" hidden>Sign out</button>
+  </div>
+</header>
+
+<main>
+  <!-- Sign in -->
+  <section class="login card" id="loginView">
+    <div>
+      <h2>Welcome to the keep</h2>
+      <p class="muted">Paste your two keys once on each phone or computer. They stay on this device only.</p>
+    </div>
+    <div>
+      <label for="kCsv">Google Sheet replies link (published CSV)</label>
+      <input type="url" id="kCsv" placeholder="https://docs.google.com/spreadsheets/d/e/…/pub?output=csv" autocomplete="off">
+      <p class="help">Lets you see RSVPs here.</p>
+    </div>
+    <div>
+      <label for="kSheet">Google Sheet edit link <span class="muted">(optional)</span></label>
+      <input type="url" id="kSheet" placeholder="https://docs.google.com/spreadsheets/d/…/edit" autocomplete="off">
+      <p class="help">Adds an "Open Sheet" button for fixing or deleting replies.</p>
+    </div>
+    <div>
+      <label for="kToken">GitHub access token</label>
+      <input type="password" id="kToken" placeholder="github_pat_…" autocomplete="off">
+      <p class="help">Lets you edit the party details. Leave empty to only view replies.</p>
+    </div>
+    <div class="actions">
+      <button class="btn primary" id="signIn">Enter the keep</button>
+      <p class="status" id="loginStatus" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <!-- Signed in -->
+  <div id="app" hidden>
+    <div class="tabs" role="tablist">
+      <button role="tab" id="tabReplies" aria-selected="true" aria-controls="replies">Replies</button>
+      <button role="tab" id="tabDetails" aria-selected="false" aria-controls="details">Party details</button>
+    </div>
+
+    <section id="replies" role="tabpanel" aria-labelledby="tabReplies" style="display:grid;gap:16px;margin-top:16px">
+      <div class="tiles">
+        <div class="tile ok"><b id="tFam">0</b><span>Families coming</span></div>
+        <div class="tile"><b id="tAdults">0</b><span>Grown-ups</span></div>
+        <div class="tile"><b id="tKids">0</b><span>Little royals</span></div>
+        <div class="tile no"><b id="tNo">0</b><span>Declined</span></div>
+      </div>
+      <div class="toolbar">
+        <input type="search" id="search" placeholder="Search names, notes…" aria-label="Search replies">
+        <button class="chip" data-filter="all" aria-pressed="true">All</button>
+        <button class="chip" data-filter="yes" aria-pressed="false">Coming</button>
+        <button class="chip" data-filter="no" aria-pressed="false">Declined</button>
+      </div>
+      <div class="actions">
+        <button class="btn" id="refresh">Refresh</button>
+        <a class="btn" id="openSheet" href="#" target="_blank" rel="noopener" hidden>Open Sheet</a>
+        <button class="btn" id="dlCsv">Download list</button>
+        <button class="btn" id="copyCount">Copy headcount</button>
+        <p class="status" id="repliesStatus" aria-live="polite"></p>
+      </div>
+      <ul class="list" id="list"></ul>
+
+      <div class="card">
+        <h2 style="font-size:20px">Log a reply you got by text</h2>
+        <p class="muted" style="margin-bottom:12px">It's added to the same Sheet, marked "added by host".</p>
+        <form class="add" id="addForm" novalidate>
+          <div class="full"><label for="aName">Name</label><input type="text" id="aName" maxlength="80" required></div>
+          <div><label for="aAtt">Reply</label><select id="aAtt"><option value="yes">Coming</option><option value="no">Declined</option></select></div>
+          <div><label for="aAdults">Adults</label><input type="number" id="aAdults" min="0" max="20" value="2"></div>
+          <div><label for="aKids">Kids</label><input type="number" id="aKids" min="0" max="20" value="1"></div>
+          <div><button class="btn primary" type="submit" id="addBtn">Add</button></div>
+        </form>
+        <p class="status" id="addStatus" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section id="details" role="tabpanel" aria-labelledby="tabDetails" hidden style="margin-top:16px">
+      <div class="card">
+        <h2>Party details</h2>
+        <p class="muted" style="margin-bottom:16px">Everything on the invite. Saving updates the live page in about a minute.</p>
+        <form id="detailsForm" class="grid" novalidate></form>
+        <div class="actions" style="margin-top:18px">
+          <button class="btn primary" id="saveDetails">Save changes</button>
+          <p class="status" id="detailsStatus" aria-live="polite"></p>
+        </div>
+        <p class="help" id="noToken" hidden>Add a GitHub access token (Sign out, then sign in again) to edit details.</p>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script src="../config.js"></script>
+<script src="../event.js"></script>
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const CFG = window.LB_CONFIG;
+  const KEY = "lb2-keep";
+  let keys = load();
+  function load(){ try { return JSON.parse(localStorage.getItem(KEY) || "null"); } catch(e){ return null; } }
+  function save(k){ try { localStorage.setItem(KEY, JSON.stringify(k)); } catch(e){} }
+
+  /* ---------- GitHub contents API ---------- */
+  const b64e = s => btoa(unescape(encodeURIComponent(s)));
+  const b64d = s => decodeURIComponent(escape(atob(s.replace(/\n/g, ""))));
+  async function gh(method, body){
+    const res = await fetch("https://api.github.com/repos/" + CFG.repo + "/contents/" + CFG.eventPath + (method === "GET" ? "?ref=main&t=" + Date.now() : ""), {
+      method, headers: { "Authorization": "Bearer " + keys.token, "Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28" },
+      body: body ? JSON.stringify(body) : undefined, cache: "no-store"
+    });
+    if (!res.ok) { const e = new Error("GitHub " + res.status); e.status = res.status; throw e; }
+    return res.json();
+  }
+
+  /* ---------- sign in ---------- */
+  function enter(){
+    $("loginView").hidden = true; $("app").hidden = false; $("signOut").hidden = false;
+    $("openSheet").hidden = !keys.sheet; if (keys.sheet) $("openSheet").href = keys.sheet;
+    $("noToken").hidden = !!keys.token; $("saveDetails").disabled = !keys.token;
+    loadReplies(); loadDetails();
+  }
+  $("signIn").onclick = async () => {
+    const k = { csv: $("kCsv").value.trim(), sheet: $("kSheet").value.trim(), token: $("kToken").value.trim() };
+    const st = $("loginStatus");
+    if (!k.csv && !k.token) { st.className = "status bad"; st.textContent = "Paste at least one key."; return; }
+    if (k.csv && !/^https:\/\/docs\.google\.com\/spreadsheets\//.test(k.csv)) { st.className = "status bad"; st.textContent = "The Sheet link should start with https://docs.google.com/spreadsheets/"; return; }
+    keys = k;
+    if (k.token) {
+      st.className = "status"; st.textContent = "Checking your GitHub key…";
+      try { await gh("GET"); } catch(e) {
+        st.className = "status bad";
+        st.textContent = e.status === 401 ? "That GitHub key isn't valid. Check it was copied fully." : e.status === 404 || e.status === 403 ? "That key can't see the site's repo. It needs Contents access to " + CFG.repo + "." : "Couldn't reach GitHub. Try again.";
+        return;
+      }
+    }
+    save(k); enter();
+  };
+  $("signOut").onclick = () => { try { localStorage.removeItem(KEY); } catch(e){} location.reload(); };
+
+  /* ---------- tabs ---------- */
+  function tab(which){
+    const r = which === "replies";
+    $("tabReplies").setAttribute("aria-selected", r); $("tabDetails").setAttribute("aria-selected", !r);
+    $("replies").hidden = !r; $("details").hidden = r;
+  }
+  $("tabReplies").onclick = () => tab("replies");
+  $("tabDetails").onclick = () => tab("details");
+
+  /* ---------- replies ---------- */
+  let rows = [], filter = "all";
+  const HEAD = { timestamp:"time", name:"name", attending:"attending", adults:"adults", kids:"kids", "kid names":"kidNames", notes:"notes", message:"message", phone:"phone", "reply id":"replyId" };
+  function toInt(v){ const n = parseInt(String(v || "").replace(/[^\d-]/g, ""), 10); return isNaN(n) ? 0 : Math.max(0, n); }
+  async function loadReplies(){
+    const st = $("repliesStatus");
+    if (!keys.csv) { st.className = "status"; st.textContent = "Add the Google Sheet link to see replies."; render(); return; }
+    st.className = "status"; st.textContent = "Loading replies…";
+    try {
+      const u = new URL(keys.csv); u.searchParams.set("t", Date.now());
+      const res = await fetch(u, { cache: "no-store" });
+      if (!res.ok) throw new Error(res.status);
+      const table = LB.parseCSV(await res.text());
+      const head = (table.shift() || []).map(h => HEAD[h.trim().toLowerCase()] || null);
+      const all = table.filter(r => r.some(c => c.trim())).map(r => {
+        const o = {}; head.forEach((k, i) => { if (k) o[k] = (r[i] || "").trim(); });
+        o.attending = /^y/i.test(o.attending || "") ? "yes" : "no";
+        o.adults = o.attending === "yes" ? toInt(o.adults) : 0; o.kids = o.attending === "yes" ? toInt(o.kids) : 0;
+        o.when = o.time ? new Date(o.time) : null;
+        return o;
+      });
+      // A guest who changes their reply sends it again with the same Reply ID: keep the newest.
+      const byId = new Map(); const loose = [];
+      all.forEach(o => { if (!o.replyId) { loose.push(o); return; } const prev = byId.get(o.replyId); if (!prev || (o.when && prev.when && o.when >= prev.when) || !prev.when) byId.set(o.replyId, o); });
+      rows = loose.concat(Array.from(byId.values())).sort((a,b) => (b.when || 0) - (a.when || 0));
+      st.className = "status ok"; st.textContent = "Updated " + new Date().toLocaleTimeString([], { hour:"numeric", minute:"2-digit" }) + ". New replies can take up to 5 minutes to appear.";
+    } catch(e) {
+      st.className = "status bad"; st.textContent = "Couldn't load the Sheet. Check it's published to the web as CSV.";
+    }
+    render();
+  }
+  function render(){
+    const yes = rows.filter(r => r.attending === "yes");
+    $("tFam").textContent = yes.length;
+    $("tAdults").textContent = yes.reduce((s,r) => s + r.adults, 0);
+    $("tKids").textContent = yes.reduce((s,r) => s + r.kids, 0);
+    $("tNo").textContent = rows.filter(r => r.attending === "no").length;
+    const q = $("search").value.trim().toLowerCase();
+    const shown = rows.filter(r => (filter === "all" || r.attending === filter) && (!q || [r.name, r.notes, r.kidNames, r.message, r.phone].join(" ").toLowerCase().includes(q)));
+    const ul = $("list"); ul.textContent = "";
+    if (!shown.length) { const li = document.createElement("li"); li.className = "empty"; li.textContent = rows.length ? "No replies match." : "No replies yet. They'll show up here."; ul.appendChild(li); return; }
+    shown.forEach(r => {
+      const li = document.createElement("li"); li.className = "row" + (r.attending === "no" ? " no" : "");
+      const pill = document.createElement("span"); pill.className = "pill"; pill.textContent = r.attending === "yes" ? "Coming" : "Declined";
+      const mid = document.createElement("div");
+      const who = document.createElement("div"); who.className = "who"; who.textContent = r.name || "Unnamed guest";
+      const meta = document.createElement("div"); meta.className = "meta";
+      meta.textContent = [r.when && !isNaN(r.when) ? r.when.toLocaleDateString([], { month:"short", day:"numeric" }) : "", r.phone].filter(Boolean).join(" · ");
+      mid.append(who, meta);
+      [["kidNames","Kids"],["notes","Note"],["message","Wish"]].forEach(([k, lab]) => {
+        if (!r[k]) return; const d = document.createElement("div"); d.className = "note";
+        const em = document.createElement("em"); em.textContent = lab + ": "; d.append(em, document.createTextNode(r[k])); mid.appendChild(d);
+      });
+      const cnt = document.createElement("div"); cnt.className = "count";
+      if (r.attending === "yes") { cnt.textContent = (r.adults + r.kids); const sm = document.createElement("small"); sm.textContent = r.adults + " adults · " + r.kids + " kids"; cnt.appendChild(sm); }
+      li.append(pill, mid, cnt); ul.appendChild(li);
+    });
+  }
+  $("search").oninput = render;
+  document.querySelectorAll("[data-filter]").forEach(b => b.onclick = () => {
+    filter = b.dataset.filter; document.querySelectorAll("[data-filter]").forEach(x => x.setAttribute("aria-pressed", x === b)); render();
+  });
+  $("refresh").onclick = loadReplies;
+  function csvCell(v){ v = String(v == null ? "" : v); return /[",\n]/.test(v) ? '"' + v.replace(/"/g,'""') + '"' : v; }
+  $("dlCsv").onclick = () => {
+    const out = [["Name","Reply","Adults","Kids","Kid names","Notes","Phone","Wish","Replied"]].concat(rows.map(r => [r.name, r.attending === "yes" ? "Coming" : "Declined", r.adults, r.kids, r.kidNames, r.notes, r.phone, r.message, r.time]));
+    const blob = new Blob([out.map(r => r.map(csvCell).join(",")).join("\n")], { type: "text/csv" });
+    const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "lily-belle-rsvps.csv"; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+  };
+  $("copyCount").onclick = async () => {
+    const yes = rows.filter(r => r.attending === "yes");
+    const t = yes.length + " families coming · " + yes.reduce((s,r)=>s+r.adults,0) + " adults · " + yes.reduce((s,r)=>s+r.kids,0) + " kids · " + rows.filter(r=>r.attending==="no").length + " declined";
+    try { await navigator.clipboard.writeText(t); $("repliesStatus").className = "status ok"; $("repliesStatus").textContent = "Copied: " + t; } catch(e){ $("repliesStatus").textContent = t; }
+  };
+  $("addForm").addEventListener("submit", async ev => {
+    ev.preventDefault();
+    const st = $("addStatus"), name = $("aName").value.trim();
+    if (!name) { $("aName").focus(); return; }
+    if (!LB.formReady()) { st.className = "status bad"; st.textContent = "The Google Form isn't connected yet (see SETUP.md)."; return; }
+    const yes = $("aAtt").value === "yes";
+    $("addBtn").disabled = true;
+    try {
+      await LB.submitRsvp({ name, attending: yes ? "yes" : "no", adults: yes ? toInt($("aAdults").value) : 0, kids: yes ? toInt($("aKids").value) : 0, notes: "added by host", replyId: "host-" + Date.now().toString(36) });
+      st.className = "status ok"; st.textContent = "Added " + name + ". It'll show in the list within a few minutes.";
+      $("aName").value = "";
+    } catch(e) { st.className = "status bad"; st.textContent = "Couldn't add that reply. Try again."; }
+    finally { $("addBtn").disabled = false; }
+  });
+
+  /* ---------- party details ---------- */
+  let sha = null, body = "", current = {};
+  function buildForm(data){
+    const f = $("detailsForm"); f.textContent = "";
+    LB.FIELDS.forEach(([k, label, type]) => {
+      const wrap = document.createElement("div");
+      if (type === "textarea" || type === "checkbox" || k === "venueName" || k === "dressCode") wrap.className = "full";
+      if (type === "checkbox") {
+        const l = document.createElement("label"); l.className = "check";
+        const i = document.createElement("input"); i.type = "checkbox"; i.id = "d_" + k; i.checked = data[k] !== false;
+        l.append(i, document.createTextNode(label)); wrap.appendChild(l);
+      } else {
+        const l = document.createElement("label"); l.htmlFor = "d_" + k; l.textContent = label;
+        const i = document.createElement(type === "textarea" ? "textarea" : "input");
+        if (type !== "textarea") i.type = type;
+        i.id = "d_" + k; i.value = data[k] == null ? "" : data[k];
+        wrap.append(l, i);
+      }
+      f.appendChild(wrap);
+    });
+  }
+  async function loadDetails(){
+    const st = $("detailsStatus");
+    if (keys.token) {
+      try {
+        const j = await gh("GET"); sha = j.sha;
+        const parsed = LB.parseFrontMatter(b64d(j.content)); body = parsed.body;
+        current = Object.assign({}, LB.DEFAULTS, parsed.data);
+      } catch(e) { st.className = "status bad"; st.textContent = "Couldn't load details from GitHub."; current = await LB.loadEvent(); }
+    } else current = await LB.loadEvent();
+    current.rsvpOpen = current.rsvpOpen !== false;
+    $("hdr").textContent = current.childName + "'s party";
+    buildForm(current);
+  }
+  $("saveDetails").onclick = async () => {
+    const st = $("detailsStatus"), btn = $("saveDetails");
+    const next = {};
+    LB.FIELDS.forEach(([k, , type]) => { const el = $("d_" + k); next[k] = type === "checkbox" ? el.checked : el.value.trim(); });
+    if (!next.childName || !next.date || !next.startTime || !next.endTime) { st.className = "status bad"; st.textContent = "Name, date and times can't be empty."; return; }
+    btn.disabled = true; st.className = "status"; st.textContent = "Saving…";
+    try {
+      const j = await gh("PUT", { message: "Update party details", content: b64e(LB.serializeFrontMatter(next, body)), sha, branch: "main" });
+      sha = j.content.sha; current = next;
+      st.className = "status ok"; st.textContent = "Saved! The invite updates in about a minute.";
+    } catch(e) {
+      st.className = "status bad";
+      st.textContent = e.status === 409 ? "Someone else saved changes first. Reload this page and try again." : e.status === 403 || e.status === 404 ? "Your GitHub key can't save to the repo. It needs Contents: Read and write." : "Couldn't save. Try again.";
+    } finally { btn.disabled = false; }
+  };
+
+  if (keys) enter();
+})();
+</script>
+</body>
+</html>

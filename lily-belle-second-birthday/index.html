@@ -2,493 +2,772 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lily Belle's Royal Winter Court</title>
 <meta name="description" content="Join us for Lily Belle's Royal Winter Court as she turns two! Saturday, January 9, 2027 at FunZy Indoor Playground, Santa Clarita.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Lily Belle's Royal Winter Court">
 <meta property="og:description" content="Lily Belle turns two! Saturday, January 9, 2027 · 10:00 AM – 12:30 PM · FunZy Indoor Playground, Santa Clarita. Please RSVP by December 1.">
 <meta property="og:url" content="https://hannahandgareth.com/lily-belle-second-birthday/">
-<meta property="og:image" content="https://hannahandgareth.com/lily-belle-second-birthday/hero.jpg">
+<meta property="og:image" content="https://hannahandgareth.com/lily-belle-second-birthday/assets/share.jpg">
 <meta property="og:image:width" content="1438">
 <meta property="og:image:height" content="914">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="robots" content="noindex">
-<title>Lily Belle's Royal Winter Court</title>
+<meta name="theme-color" content="#141d38">
+<link rel="icon" href="assets/crown.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Noto+Serif:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Noto+Serif:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
-/* Layout: one framed invitation card, then an RSVP card in the same frame language; host tools appear below for the owner only. */
+/* Layout: the page is one winter night. Title hangs in the sky, the painting opens the forest
+   (its creatures are live), and the details + RSVP sit on parchment in the snowfall, ending on a snowbank. */
 :root{
-  --navy:#1c2a4f;
-  --ink:#2e3a5c;
-  --gold:#a8843f;
-  --gold-soft:#d7bf8a;
-  --paper:#f7f3ea;
-  --mist:#ece6d7;
-  --ok:#3f6b4a;
-  --warn:#9a4a3a;
+  --night:#141d38;
+  --night-2:#1f2c52;
+  --parchment:#fbf6ea;
+  --ink:#24305a;
+  --gold:#b08a42;
+  --gold-bright:#e6c77f;
+  --frost:#dfe7f5;
+  --berry:#9c4636;
+  --pine:#3d6b55;
   --display:"Playfair Display", Georgia, "Times New Roman", serif;
   --body:"Noto Serif", Georgia, "Times New Roman", serif;
-  color-scheme:light;
+  color-scheme:dark;
 }
 *{box-sizing:border-box}
+html{scroll-behavior:smooth}
 html,body{margin:0}
-body{background:#e9e3d4;color:var(--ink);font-family:var(--body);line-height:1.5;padding:24px 16px 64px}
-.wrap{max-width:720px;margin:0 auto;display:grid;gap:28px}
-.card{background:var(--paper);border:6px solid var(--navy);padding:14px;box-shadow:0 18px 40px -24px rgba(28,42,79,.45)}
-.card-inner{border:1.5px solid var(--gold);padding:clamp(16px,4vw,28px)}
-.hero{display:block;width:100%;max-width:100%;height:auto;border:2px solid var(--gold)}
-.invite{text-align:center;padding-top:28px;display:grid;gap:6px;justify-items:center}
-.eyebrow{font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);font-size:clamp(11px,2.4vw,15px);margin:0}
-h1{font-family:var(--display);color:var(--navy);font-size:clamp(48px,12vw,84px);line-height:1;margin:8px 0 0;text-wrap:balance}
-.court{font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-size:clamp(20px,5vw,34px);margin:0}
-.rule{display:flex;align-items:center;gap:10px;margin:12px 0;color:var(--gold)}
-.rule span{height:1.5px;width:min(28vw,180px);background:var(--gold-soft)}
-.rule i{width:10px;height:10px;background:var(--gold);transform:rotate(45deg)}
-.turns{font-style:italic;font-size:clamp(24px,5vw,32px);color:var(--ink);margin:0}
-.date{font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--navy);font-size:clamp(20px,4.6vw,28px);margin:10px 0 0}
-.time{font-size:clamp(18px,4vw,22px);margin:0}
-.venue{font-weight:700;color:var(--navy);font-size:clamp(19px,4.2vw,24px);margin:14px 0 0}
-.addr{margin:0;font-size:clamp(15px,3.4vw,18px)}
-.dress{font-style:italic;margin:12px 0 0;font-size:clamp(16px,3.6vw,19px);max-width:30em;text-wrap:balance}
-.actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:16px}
-.btn{font:inherit;font-weight:600;font-size:15px;border-radius:999px;padding:10px 18px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--navy);background:transparent;color:var(--navy);transition:background .15s,color .15s}
-.btn:hover{background:var(--navy);color:var(--paper)}
-.btn.primary{background:var(--navy);color:var(--paper)}
-.btn.primary:hover{background:#111b36}
-.btn.gold{border-color:var(--gold);color:#7a5e26}
-.btn.gold:hover{background:var(--gold);color:var(--paper)}
-.btn:disabled{opacity:.5;cursor:not-allowed}
-.btn:focus-visible,input:focus-visible,textarea:focus-visible,.choice input:focus-visible+span{outline:3px solid var(--gold);outline-offset:2px}
-.countdown{margin:18px 0 0;font-size:15px;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;font-weight:600}
-.sign{font-style:italic;color:var(--gold);font-size:20px;margin:16px 0 0}
+body{
+  min-height:100vh;
+  background:
+    radial-gradient(1200px 520px at 50% -120px, rgba(122,148,206,.35), transparent 70%),
+    linear-gradient(180deg, var(--night) 0%, #18234a 40%, var(--night-2) 100%);
+  color:var(--frost);
+  font-family:var(--body);
+  line-height:1.5;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+button{font:inherit}
+[hidden]{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
-h2{font-family:var(--display);color:var(--navy);font-size:clamp(28px,6vw,38px);margin:0;text-align:center;text-wrap:balance}
-.sub{text-align:center;margin:4px 0 20px}
-.sub strong{color:var(--navy)}
-form{display:grid;gap:18px}
-label,.legend{font-weight:600;color:var(--navy);font-size:15px;display:block;margin-bottom:6px}
-.hint{font-weight:400;color:#6a6f80;font-size:13px}
-input[type=text],input[type=tel],textarea{width:100%;font:inherit;font-size:16px;color:var(--ink);background:#fffdf8;border:1.5px solid #cdbf9f;border-radius:6px;padding:10px 12px}
-textarea{min-height:76px;resize:vertical}
-fieldset{border:0;margin:0;padding:0}
-.choices{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.choice{position:relative}
-.choice input{position:absolute;opacity:0;inset:0;cursor:pointer}
-.choice span{display:block;text-align:center;padding:14px 10px;border:1.5px solid #cdbf9f;border-radius:8px;background:#fffdf8;font-weight:600;color:var(--navy)}
-.choice span small{display:block;font-weight:400;font-style:italic;color:#6a6f80;font-size:13px}
-.choice input:checked+span{border-color:var(--navy);background:var(--navy);color:var(--paper)}
-.choice input:checked+span small{color:var(--gold-soft)}
-.counts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.stepper{display:flex;align-items:center;border:1.5px solid #cdbf9f;border-radius:8px;background:#fffdf8;overflow:hidden}
-.stepper button{font:inherit;font-size:22px;width:46px;height:46px;border:0;background:var(--mist);color:var(--navy);cursor:pointer}
-.stepper button:hover{background:var(--gold-soft)}
-.stepper output{flex:1;text-align:center;font-size:20px;font-weight:700;color:var(--navy);font-variant-numeric:tabular-nums}
-.only-yes[hidden]{display:none}
-.err{color:var(--warn);font-size:14px;margin:0}
+/* ---------- canvases ---------- */
+#snow{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:60}
+
+/* ---------- sky + title ---------- */
+.sky{position:relative;z-index:3;text-align:center;padding:max(40px, env(safe-area-inset-top)) 20px 0;display:grid;justify-items:center;gap:4px}
+.stars{position:absolute;inset:0;pointer-events:none;z-index:-1;overflow:hidden}
+.stars i{position:absolute;width:3px;height:3px;border-radius:50%;background:#fff;opacity:.7;animation:twinkle 3.2s ease-in-out infinite}
+@keyframes twinkle{50%{opacity:.15;transform:scale(.6)}}
+.eyebrow{margin:0;font-weight:700;letter-spacing:.34em;text-transform:uppercase;color:var(--gold-bright);font-size:clamp(11px,2.6vw,14px)}
+h1{margin:6px 0 0;font-family:var(--display);font-weight:800;color:var(--parchment);font-size:clamp(56px,14vw,124px);line-height:.95;letter-spacing:-.01em;text-wrap:balance;text-shadow:0 4px 30px rgba(120,150,220,.35)}
+h1 .letter{display:inline-block;transition:transform .35s cubic-bezier(.3,1.6,.5,1),color .3s}
+h1 .letter:hover{transform:translateY(-8px) rotate(-4deg);color:var(--gold-bright)}
+.court{margin:0;font-family:var(--display);font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-bright);font-size:clamp(20px,5.2vw,40px)}
+.turns{margin:4px 0 0;font-family:var(--display);font-style:italic;font-weight:600;font-size:clamp(22px,5vw,34px);color:var(--frost)}
+.flourish{display:flex;align-items:center;gap:10px;margin:10px 0 0;color:var(--gold-bright)}
+.flourish span{height:1.5px;width:min(26vw,160px);background:linear-gradient(90deg,transparent,var(--gold-bright))}
+.flourish span:last-child{background:linear-gradient(270deg,transparent,var(--gold-bright))}
+.flourish i{width:9px;height:9px;background:var(--gold-bright);transform:rotate(45deg)}
+
+/* ---------- the painting ---------- */
+.forest{position:relative;z-index:0;margin-top:-10px}
+.scene{position:relative;width:min(100%, calc(88vh * 1.5758), 1700px);aspect-ratio:1434/910;margin:0 auto}
+.scene-art{width:100%;height:100%;object-fit:cover;user-select:none;-webkit-user-drag:none;
+  -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 14%,#000 86%,transparent 100%),linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%);
+  -webkit-mask-composite:source-in;
+  mask-image:linear-gradient(180deg,transparent 0,#000 14%,#000 86%,transparent 100%),linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%);
+  mask-composite:intersect}
+@media (max-width:700px){
+  .scene-art{
+    -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 12%,#000 88%,transparent 100%);
+    mask-image:linear-gradient(180deg,transparent 0,#000 12%,#000 88%,transparent 100%)}
+}
+.critter{position:absolute;left:var(--l);top:var(--t);width:var(--w);padding:0;margin:0;border:0;background:none;cursor:pointer;
+  transform-origin:50% 95%;transform:rotate(var(--tilt,0deg)) translateY(var(--lift,0));transition:transform .5s cubic-bezier(.3,1.4,.5,1);-webkit-tap-highlight-color:transparent;z-index:2}
+.critter::before{content:"";position:absolute;inset:-14px}
+.critter img{width:100%;height:auto;transform-origin:50% 100%;filter:drop-shadow(0 6px 6px rgba(10,16,40,.25))}
+.critter:focus-visible{outline:3px solid var(--gold-bright);outline-offset:6px;border-radius:12px}
+.critter.hop img{animation:hop .62s cubic-bezier(.3,.9,.4,1)}
+.critter.wiggle img{animation:wiggle .7s ease-in-out}
+.critter.turn img{animation:turn .9s ease-in-out}
+.critter.roll img{animation:roll .9s cubic-bezier(.5,0,.4,1)}
+.critter.rise img{animation:rise 1.1s cubic-bezier(.3,1.2,.5,1)}
+.critter.peek img{animation:peek .9s ease-in-out}
+.critter.jump img{animation:jump .7s cubic-bezier(.3,.9,.4,1) 2}
+@keyframes hop{0%{transform:scale(1.06,.9)}30%{transform:translateY(-28%) scale(.94,1.08)}60%{transform:translateY(0) scale(1.08,.88)}80%{transform:scale(.97,1.04)}100%{transform:none}}
+@keyframes jump{0%{transform:scale(1.05,.92)}40%{transform:translateY(-40%) scale(.95,1.06)}75%{transform:translateY(0) scale(1.06,.9)}100%{transform:none}}
+@keyframes wiggle{0%,100%{transform:none}20%{transform:rotate(-9deg)}40%{transform:rotate(8deg)}60%{transform:rotate(-6deg)}80%{transform:rotate(4deg)}}
+@keyframes turn{0%,100%{transform:none}30%,70%{transform:scaleX(-1)}}
+@keyframes roll{0%{transform:none}20%{transform:scale(1.05,.8)}60%{transform:rotate(360deg) scale(.85)}100%{transform:rotate(360deg)}}
+@keyframes rise{0%{transform:none}35%{transform:translateY(-30%) rotate(-8deg) scale(1.08)}55%{transform:translateY(-30%) rotate(7deg) scale(1.08)}100%{transform:none}}
+@keyframes peek{0%,100%{transform:none}40%{transform:scale(1.04,.94)}70%{transform:scale(.98,1.03)}}
+
+.bubble{position:absolute;z-index:5;pointer-events:none;background:var(--parchment);color:var(--ink);font-family:var(--display);font-style:italic;font-weight:600;
+  font-size:clamp(13px,2.6vw,17px);padding:8px 14px;border-radius:16px;box-shadow:0 10px 24px -8px rgba(5,10,30,.6);white-space:nowrap;
+  transform:translate(-50%,calc(-100% - 10px)) scale(.6);opacity:0;transition:transform .35s cubic-bezier(.3,1.6,.5,1),opacity .2s}
+.bubble::after{content:"";position:absolute;left:50%;bottom:-7px;width:14px;height:14px;background:inherit;transform:translateX(-50%) rotate(45deg);border-radius:2px}
+.bubble.show{opacity:1;transform:translate(-50%,calc(-100% - 10px)) scale(1)}
+.hint{position:relative;z-index:3;text-align:center;margin:8px 0 0;font-style:italic;color:var(--gold-bright);font-size:15px;opacity:.9}
+.hint b{display:inline-block;animation:nudge 2.4s ease-in-out infinite}
+@keyframes nudge{50%{transform:translateY(-3px)}}
+
+/* ---------- content ---------- */
+main{position:relative;z-index:3;width:min(100% - 32px, 720px);margin:36px auto 0;display:grid;gap:clamp(96px,16vw,120px)}
+.parchment{position:relative;background:var(--parchment);color:var(--ink);border-radius:6px;padding:12px;box-shadow:0 30px 60px -30px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,.05)}
+.parchment .frame{border:1.5px solid var(--gold);outline:1px solid rgba(176,138,66,.45);outline-offset:4px;border-radius:2px;padding:clamp(22px,5vw,40px) clamp(18px,5vw,40px)}
+.parchment h2{margin:0;text-align:center;font-family:var(--display);font-weight:700;color:var(--ink);font-size:clamp(28px,6.4vw,40px);line-height:1.1;text-wrap:balance}
+.kicker{margin:0 0 6px;text-align:center;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-size:12px}
+.lede{text-align:center;margin:8px 0 26px}
+
+.announce{display:flex;gap:12px;align-items:flex-start;background:#fff3d6;border:1px solid #e3cc95;border-radius:10px;padding:12px 14px;margin:0 0 24px;color:#5b4314}
+.announce[hidden]{display:none}
+
+.facts{display:grid;grid-template-columns:auto 1fr;gap:22px 22px;align-items:start}
+.calendar-tile{grid-row:span 2;width:104px;border-radius:10px;overflow:hidden;background:#fff;box-shadow:0 8px 18px -10px rgba(36,48,90,.6);text-align:center;border:1px solid #e6dcc4}
+.calendar-tile .m{background:var(--ink);color:var(--gold-bright);font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:12px;padding:6px 0}
+.calendar-tile .d{font-family:var(--display);font-weight:800;font-size:48px;line-height:1;padding:8px 0 2px;color:var(--ink)}
+.calendar-tile .w{font-size:12px;color:#6a6f80;padding-bottom:8px}
+.fact h3{margin:0 0 2px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.fact p{margin:0}
+.fact .big{font-family:var(--display);font-weight:700;font-size:clamp(20px,4.6vw,24px);color:var(--ink);line-height:1.2}
+.fact.wide{grid-column:1/-1}
+.dress{font-style:italic}
+.actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:26px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:700;font-size:15px;border-radius:999px;padding:12px 20px;cursor:pointer;text-decoration:none;border:1.5px solid var(--ink);background:transparent;color:var(--ink);transition:transform .2s cubic-bezier(.3,1.6,.5,1),background .15s,color .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(1px) scale(.98)}
+.btn.primary{background:var(--ink);color:var(--parchment)}
+.btn.gold{background:var(--gold);border-color:var(--gold);color:#fff}
+.btn:disabled{opacity:.55;cursor:wait;transform:none}
+.btn svg{width:18px;height:18px;flex:none}
+.btn:focus-visible,input:focus-visible,textarea:focus-visible,.choice input:focus-visible + span,.stepper button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+
+.countdown{margin:28px auto 0;display:flex;align-items:center;justify-content:center;gap:14px;text-align:left}
+.countdown b{font-family:var(--display);font-weight:800;font-size:56px;line-height:1;color:var(--gold);font-variant-numeric:tabular-nums}
+.countdown span{font-style:italic;line-height:1.3;max-width:13em}
+
+/* ---------- RSVP ---------- */
+#rsvp{scroll-margin-top:90px}
+.perch{position:absolute;right:clamp(10px,6vw,46px);top:0;width:clamp(78px,16vw,112px);transform:translateY(-82%);z-index:4}
+.perch .critter{position:static;width:100%}
+form{display:grid;gap:22px}
+label,.legend{display:block;font-weight:700;color:var(--ink);font-size:15px;margin-bottom:7px}
+.opt{font-weight:400;color:#6a6f80;font-size:13px}
+input[type=text],input[type=tel],textarea{width:100%;font:inherit;font-size:16px;color:var(--ink);background:#fffdf7;border:1.5px solid #d6c9a8;border-radius:10px;padding:12px 14px;transition:border-color .15s,box-shadow .15s}
+input:focus,textarea:focus{border-color:var(--gold);box-shadow:0 0 0 4px rgba(176,138,66,.15)}
+textarea{min-height:84px;resize:vertical}
+fieldset{border:0;margin:0;padding:0;min-width:0}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.choice{position:relative;display:block;margin:0}
+.choice input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.choice span{display:grid;justify-items:center;gap:4px;text-align:center;padding:16px 10px;border:1.5px solid #d6c9a8;border-radius:14px;background:#fffdf7;font-weight:700;color:var(--ink);transition:transform .25s cubic-bezier(.3,1.6,.5,1),background .2s,border-color .2s}
+.choice img{width:48px;height:48px;object-fit:contain;transition:transform .35s cubic-bezier(.3,1.6,.5,1)}
+.choice small{font-weight:400;font-style:italic;color:#6a6f80}
+.choice:hover span{transform:translateY(-2px)}
+.choice input:checked + span{background:var(--ink);border-color:var(--ink);color:var(--parchment)}
+.choice input:checked + span small{color:var(--gold-bright)}
+.choice input:checked + span img{transform:scale(1.18) rotate(-6deg)}
+.counts{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.stepper{display:flex;align-items:center;border:1.5px solid #d6c9a8;border-radius:12px;background:#fffdf7;overflow:hidden}
+.stepper button{width:48px;height:50px;border:0;background:#f1e9d6;color:var(--ink);font-size:24px;cursor:pointer}
+.stepper button:hover{background:var(--gold-bright)}
+.stepper output{flex:1;text-align:center;font-family:var(--display);font-weight:800;font-size:24px;color:var(--ink);font-variant-numeric:tabular-nums}
+.crowns{display:flex;flex-wrap:wrap;gap:3px;min-height:22px;margin-top:8px}
+.crowns img{width:22px;height:auto;animation:pop .4s cubic-bezier(.3,1.6,.5,1)}
+@keyframes pop{from{transform:scale(0) rotate(-30deg)}}
+.yes-only[hidden]{display:none}
+.err{margin:0;color:var(--berry);font-weight:600}
+.err[hidden]{display:none}
 .submit-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
 
-.panel{border:1.5px dashed var(--gold);border-radius:10px;padding:18px;background:#fffdf8;display:grid;gap:12px}
-.panel h3{margin:0;font-family:var(--display);color:var(--navy);font-size:22px}
-.preview{white-space:pre-wrap;font-size:14px;background:var(--mist);border-radius:6px;padding:12px;margin:0;color:var(--ink)}
-.ok{color:var(--ok);font-weight:600}
-.small{font-size:13px;color:#6a6f80;margin:0}
+.panel{display:grid;gap:12px;text-align:center;justify-items:center}
+.panel[hidden]{display:none}
+.panel h3{margin:0;font-family:var(--display);font-size:30px;color:var(--ink)}
+.panel p{margin:0}
+.summary{background:#f4ecd8;border-radius:12px;padding:12px 16px;font-weight:600}
+.preview{white-space:pre-wrap;text-align:left;font-size:14px;background:#f4ecd8;border-radius:10px;padding:12px 14px;margin:0;width:100%;font-family:var(--body)}
+.muted{color:#6a6f80;font-size:14px}
 
-.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-.tile{background:#fffdf8;border:1.5px solid #e0d4b6;border-radius:8px;padding:12px;text-align:center}
-.tile b{display:block;font-family:var(--display);font-size:32px;color:var(--navy);font-variant-numeric:tabular-nums;line-height:1.1}
-.tile span{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);font-weight:600}
-.list{display:grid;gap:8px;margin:0;padding:0;list-style:none}
-.row{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:start;background:#fffdf8;border:1px solid #e0d4b6;border-left:5px solid var(--ok);border-radius:6px;padding:10px 12px}
-.row.no{border-left-color:var(--warn)}
-.pill{font-size:12px;font-weight:700;padding:2px 8px;border-radius:999px;background:var(--mist);color:var(--navy);white-space:nowrap}
-.row .who{font-weight:700;color:var(--navy)}
-.row .meta{font-size:13px;color:#6a6f80}
-.row .note{font-size:14px;font-style:italic;margin-top:2px}
-.link{background:none;border:0;color:var(--warn);font:inherit;font-size:13px;cursor:pointer;text-decoration:underline}
-.log{display:grid;grid-template-columns:2fr 1fr 1fr 1fr auto;gap:8px;align-items:end}
-.log input[type=number]{width:100%;font:inherit;font-size:16px;border:1.5px solid #cdbf9f;border-radius:6px;padding:9px 8px;background:#fffdf8}
-.log select{width:100%;font:inherit;font-size:15px;border:1.5px solid #cdbf9f;border-radius:6px;padding:9px 6px;background:#fffdf8}
-.empty{text-align:center;font-style:italic;color:#6a6f80;margin:0}
+/* ---------- footer snowbank ---------- */
+footer{position:relative;z-index:3;margin-top:70px;text-align:center;color:var(--ink)}
+.bank{position:relative;height:clamp(120px,22vw,180px)}
+.bank svg{position:absolute;inset:auto 0 0 0;width:100%;height:100%}
+.friends{position:absolute;inset:auto 0 32% 0;display:flex;justify-content:center;align-items:flex-end;gap:clamp(8px,4vw,40px)}
+.friends .critter{position:relative;left:auto;top:auto;width:auto}
+.friends .critter img{height:var(--h);width:auto}
+.friends [data-c=fox2]{--h:clamp(56px,13vw,92px)} .friends [data-c=bunny2]{--h:clamp(60px,14vw,98px)} .friends [data-c=squirrel2]{--h:clamp(52px,12vw,84px)} .friends [data-c=hedgehog2]{--h:clamp(40px,9vw,66px)}
+.snowfloor{background:#f3f6fb;padding:6px 20px max(36px, env(safe-area-inset-bottom))}
+.sign{margin:0;font-family:var(--display);font-style:italic;font-weight:600;font-size:22px;color:var(--gold)}
+.foot-note{margin:6px 0 0;font-size:13px;color:#6a7390}
+
 @media (max-width:560px){
-  .tiles{grid-template-columns:repeat(2,1fr)}
-  .log{grid-template-columns:1fr 1fr}
-  .log .wide{grid-column:1/-1}
-  .choices{grid-template-columns:1fr}
+  .choice span{padding:14px 8px}
+  .choice img{width:40px;height:40px}
+  .facts{grid-template-columns:auto 1fr;gap:18px 16px}
+  .calendar-tile{width:86px}
+  .calendar-tile .d{font-size:40px}
 }
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
 </style>
 </head>
 <body>
-<main class="wrap">
+<canvas id="snow" aria-hidden="true"></canvas>
+<canvas id="fx" aria-hidden="true"></canvas>
+<p class="sr" id="say" aria-live="polite"></p>
 
-  <article class="card" aria-label="Invitation">
-    <div class="card-inner">
-      <img class="hero" src="hero.jpg" width="1438" height="914" alt="A snowy forest at night with a glowing castle, a gold crown on a navy velvet pillow, and a fox, bunny, owl, squirrel and hedgehog in the snow.">
-      <div class="invite">
-        <p class="eyebrow">You are cordially invited to</p>
-        <h1>Lily Belle's</h1>
-        <p class="court">Royal Winter Court</p>
-        <div class="rule" aria-hidden="true"><span></span><i></i><span></span></div>
-        <p class="turns">as she turns two!</p>
-        <p class="date">Saturday, January 9, 2027</p>
-        <p class="time">10:00 AM – 12:30 PM</p>
-        <p class="venue">FunZy Indoor Playground</p>
-        <p class="addr">20655 Soledad Canyon Rd #24 · Santa Clarita</p>
-        <p class="dress">Little royals are welcome to dress up: princesses, dragons, fairies &amp; knights!</p>
-        <div class="actions">
-          <a class="btn primary" href="#rsvp">RSVP</a>
-          <a class="btn" id="calLink" target="_blank" rel="noopener">Add to Google Calendar</a>
-          <a class="btn" href="https://www.google.com/maps/search/?api=1&query=FunZy+Indoor+Playground+20655+Soledad+Canyon+Rd+%2324+Santa+Clarita+CA" target="_blank" rel="noopener">Directions</a>
-        </div>
-        <p class="countdown" id="countdown"></p>
-        <div class="rule" aria-hidden="true"><span></span><i></i><span></span></div>
-        <p class="sign">Hannah, Gareth &amp; Lily Belle</p>
+<header class="sky" id="sky">
+  <div class="stars" id="stars" aria-hidden="true"></div>
+  <p class="eyebrow">You are cordially invited to</p>
+  <h1 id="title" data-f="childName's">Lily Belle's</h1>
+  <p class="court" data-f="partyTitle">Royal Winter Court</p>
+  <p class="turns" data-f="ageLine">as she turns two!</p>
+  <div class="flourish" aria-hidden="true"><span></span><i></i><span></span></div>
+</header>
+
+<section class="forest" aria-label="A snowy castle forest with friendly animals">
+  <div class="scene" id="scene">
+    <img class="scene-art" src="assets/scene.jpg" width="1434" height="910" alt="A glowing snow castle in a moonlit pine forest, with a navy velvet pillow resting in the snow.">
+    <button class="critter" data-c="fox" style="--l:14.16%;--t:58.9%;--w:11.51%" aria-label="Fox. Tap to say hello"><img src="assets/fox.png" alt=""></button>
+    <button class="critter" data-c="crown" style="--l:27.75%;--t:63.3%;--w:19.6%" aria-label="Golden crown. Tap for sparkles"><img src="assets/crown.png" alt=""></button>
+    <button class="critter" data-c="bunny" style="--l:61.16%;--t:62.53%;--w:10.11%" aria-label="Bunny. Tap to say hello"><img src="assets/bunny.png" alt=""></button>
+    <button class="critter" data-c="owl" style="--l:88.35%;--t:55.71%;--w:8.65%" aria-label="Owl. Tap to say hello"><img src="assets/owl.png" alt=""></button>
+    <button class="critter" data-c="squirrel" style="--l:79.99%;--t:75.49%;--w:11.92%" aria-label="Squirrel. Tap to say hello"><img src="assets/squirrel.png" alt=""></button>
+    <button class="critter" data-c="hedgehog" style="--l:64.92%;--t:88.46%;--w:11.58%" aria-label="Hedgehog. Tap to say hello"><img src="assets/hedgehog.png" alt=""></button>
+    <div class="bubble" id="sceneBubble" aria-hidden="true"></div>
+  </div>
+  <p class="hint">Psst… <b>tap the forest friends</b></p>
+</section>
+
+<main>
+  <article class="parchment" aria-labelledby="detailsTitle">
+    <div class="frame">
+      <p class="kicker">By royal decree</p>
+      <h2 id="detailsTitle">The Royal Details</h2>
+      <p class="lede">Join us for a winter morning of play, cake and crowns.</p>
+
+      <div class="announce" id="announce" hidden>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 9v4M12 17h.01"/><circle cx="12" cy="12" r="10"/></svg>
+        <p style="margin:0" id="announceText"></p>
       </div>
+
+      <div class="facts">
+        <div class="calendar-tile" aria-hidden="true">
+          <div class="m" id="calMonth">January</div>
+          <div class="d" id="calDay">9</div>
+          <div class="w" id="calWeek">Saturday</div>
+        </div>
+        <div class="fact">
+          <h3>When</h3>
+          <p class="big" id="whenDate">Saturday, January 9, 2027</p>
+          <p id="whenTime">10:00 AM – 12:30 PM</p>
+        </div>
+        <div class="fact">
+          <h3>Where</h3>
+          <p class="big" data-f="venueName">FunZy Indoor Playground</p>
+          <p><span data-f="venueAddress">20655 Soledad Canyon Rd #24</span> · <span data-f="venueCity">Santa Clarita, CA</span></p>
+        </div>
+        <div class="fact wide">
+          <h3>Dress code</h3>
+          <p class="dress" data-f="dressCode">Little royals are welcome to dress up: princesses, dragons, fairies &amp; knights!</p>
+        </div>
+      </div>
+
+      <div class="actions">
+        <a class="btn primary" href="#rsvp">RSVP now</a>
+        <a class="btn" id="calLink" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Add to calendar</a>
+        <a class="btn" id="mapLink" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>Directions</a>
+      </div>
+
+      <p class="countdown" id="countdown"><b id="sleeps">61</b><span id="sleepsText">sleeps until the royal celebration</span></p>
     </div>
   </article>
 
-  <section class="card" id="rsvp" aria-labelledby="rsvpTitle">
-    <div class="card-inner">
-      <h2 id="rsvpTitle">Reply to the Royal Court</h2>
-      <p class="sub">Please RSVP by <strong>Tuesday, December 1</strong>. <span id="deadlineNote"></span></p>
+  <section class="parchment" id="rsvp" aria-labelledby="rsvpTitle">
+    <div class="perch"><button class="critter" data-c="owl2" aria-label="Owl. Tap to say hello"><img src="assets/owl.png" alt=""></button></div>
+    <div class="frame">
+      <p class="kicker">Kindly reply by <span id="rsvpByShort">December 1</span></p>
+      <h2 id="rsvpTitle">Will you join the court?</h2>
+      <p class="lede" id="rsvpLede">Let us know who's coming so we save enough cake.</p>
 
       <form id="rsvpForm" novalidate>
         <div>
           <label for="fName">Your name or family name</label>
-          <input type="text" id="fName" name="name" autocomplete="name" placeholder="e.g. The Ramirez family" maxlength="80" required>
+          <input type="text" id="fName" autocomplete="name" maxlength="80" placeholder="e.g. The Ramirez family">
         </div>
 
         <fieldset>
-          <legend class="legend">Will you join us?</legend>
+          <legend class="legend">Can you come?</legend>
           <div class="choices">
-            <label class="choice"><input type="radio" name="attending" id="attYes" value="yes"><span>Joyfully accepts<small>We'll be there</small></span></label>
-            <label class="choice"><input type="radio" name="attending" id="attNo" value="no"><span>Regretfully declines<small>Sending birthday wishes</small></span></label>
+            <label class="choice"><input type="radio" name="attending" id="attYes" value="yes"><span><img src="assets/bunny.png" alt="">Joyfully accepts<small>We'll be there!</small></span></label>
+            <label class="choice"><input type="radio" name="attending" id="attNo" value="no"><span><img src="assets/hedgehog.png" alt="">Regretfully declines<small>Sending birthday wishes</small></span></label>
           </div>
         </fieldset>
 
-        <div class="only-yes" id="yesFields" hidden>
+        <div class="yes-only" id="yesFields" hidden>
           <div class="counts">
             <div>
               <span class="legend" id="adultsLbl">Grown-ups</span>
               <div class="stepper" role="group" aria-labelledby="adultsLbl">
-                <button type="button" id="adultsMinus" aria-label="One fewer grown-up">−</button>
+                <button type="button" data-step="adults" data-d="-1" aria-label="One fewer grown-up">−</button>
                 <output id="adultsOut" aria-live="polite">2</output>
-                <button type="button" id="adultsPlus" aria-label="One more grown-up">+</button>
+                <button type="button" data-step="adults" data-d="1" aria-label="One more grown-up">+</button>
               </div>
             </div>
             <div>
               <span class="legend" id="kidsLbl">Little royals</span>
               <div class="stepper" role="group" aria-labelledby="kidsLbl">
-                <button type="button" id="kidsMinus" aria-label="One fewer child">−</button>
+                <button type="button" data-step="kids" data-d="-1" aria-label="One fewer child">−</button>
                 <output id="kidsOut" aria-live="polite">1</output>
-                <button type="button" id="kidsPlus" aria-label="One more child">+</button>
+                <button type="button" data-step="kids" data-d="1" aria-label="One more child">+</button>
               </div>
+              <div class="crowns" id="crowns" aria-hidden="true"></div>
             </div>
           </div>
-          <div style="margin-top:18px">
-            <label for="fKidNames">Little royals' names &amp; ages <span class="hint">(optional)</span></label>
+          <div style="margin-top:22px">
+            <label for="fKidNames">Little royals' names &amp; ages <span class="opt">(optional)</span></label>
             <input type="text" id="fKidNames" maxlength="160" placeholder="e.g. Mia (3), Leo (1)">
           </div>
-          <div style="margin-top:18px">
-            <label for="fNotes">Allergies or anything we should know <span class="hint">(optional)</span></label>
+          <div style="margin-top:22px">
+            <label for="fNotes">Allergies or anything we should know <span class="opt">(optional)</span></label>
             <input type="text" id="fNotes" maxlength="200" placeholder="e.g. nut allergy">
           </div>
         </div>
 
         <div>
-          <label for="fMsg">A birthday wish for Lily Belle <span class="hint">(optional)</span></label>
-          <textarea id="fMsg" maxlength="400" placeholder="Happy 2nd birthday, little princess!"></textarea>
+          <label for="fPhone">Your phone <span class="opt">(optional, in case plans change)</span></label>
+          <input type="tel" id="fPhone" autocomplete="tel" maxlength="30" placeholder="(555) 123-4567">
+        </div>
+        <div>
+          <label for="fMsg">A birthday wish for <span data-f="childName">Lily Belle</span> <span class="opt">(optional)</span></label>
+          <textarea id="fMsg" maxlength="400" placeholder="Happy birthday, little princess!"></textarea>
         </div>
 
         <p class="err" id="formErr" role="alert" hidden></p>
-        <div class="submit-row">
-          <button type="submit" class="btn primary" id="submitBtn">Send my RSVP</button>
-        </div>
+        <div class="submit-row"><button type="submit" class="btn primary" id="submitBtn">Send my RSVP</button></div>
       </form>
 
-      <div class="panel" id="savedPanel" hidden aria-live="polite">
-        <h3>Thank you!</h3>
-        <p class="ok" id="savedText"></p>
-        <p class="small">Plans changed? Update the form above and send it again any time before December 1.</p>
+      <div class="panel" id="donePanel" hidden>
+        <h3 id="doneTitle">Huzzah, you're on the list!</h3>
+        <p class="summary" id="doneSummary"></p>
+        <p class="muted" id="doneNote">Plans changed? You can update your reply any time.</p>
+        <button type="button" class="btn" id="changeBtn">Change my reply</button>
       </div>
 
-      <div class="panel" id="textPanel" hidden aria-live="polite">
-        <h3>Last step: text it to Hannah</h3>
-        <p class="small">Your reply is ready. Tap the button to open Messages with it filled in, or copy it and send it to <strong>(661) 718-6474</strong>.</p>
+      <div class="panel" id="textPanel" hidden>
+        <h3>Last step: text it to <span data-f="hostName">Hannah</span></h3>
+        <p class="muted">Your reply is written out below. Tap to open Messages with it filled in, or copy it and send it to <strong data-f="hostPhone">(661) 718-6474</strong>.</p>
         <pre class="preview" id="smsPreview"></pre>
         <div class="submit-row">
           <a class="btn primary" id="smsLink" href="#">Open in Messages</a>
-          <button type="button" class="btn gold" id="copyBtn">Copy message</button>
+          <button type="button" class="btn" id="copyBtn">Copy message</button>
+          <button type="button" class="btn" id="backBtn">Edit reply</button>
         </div>
-        <p class="small" id="copyNote" aria-live="polite"></p>
+        <p class="muted" id="copyNote" aria-live="polite"></p>
+      </div>
+
+      <div class="panel" id="closedPanel" hidden>
+        <h3>RSVPs are closed</h3>
+        <p>Questions? Text <span data-f="hostName">Hannah</span> at <strong data-f="hostPhone">(661) 718-6474</strong>.</p>
       </div>
     </div>
   </section>
-
-  <section class="card" id="host" hidden aria-labelledby="hostTitle">
-    <div class="card-inner" style="display:grid;gap:18px">
-      <div>
-        <h2 id="hostTitle">Guest list</h2>
-        <p class="sub" style="margin-bottom:0">Only you and editors you invite can see this. RSVPs sent from this page appear automatically; log text replies below.</p>
-      </div>
-      <div class="tiles">
-        <div class="tile"><b id="tFam">0</b><span>Families coming</span></div>
-        <div class="tile"><b id="tAdults">0</b><span>Grown-ups</span></div>
-        <div class="tile"><b id="tKids">0</b><span>Little royals</span></div>
-        <div class="tile"><b id="tNo">0</b><span>Declined</span></div>
-      </div>
-      <p class="small" id="hostStatus"></p>
-
-      <form id="logForm" class="log" novalidate>
-        <div class="wide"><label for="lName">Log a text reply</label><input type="text" id="lName" maxlength="80" placeholder="Family name" required></div>
-        <div><label for="lAtt">Reply</label><select id="lAtt"><option value="yes">Coming</option><option value="no">Declined</option></select></div>
-        <div><label for="lAdults">Adults</label><input type="number" id="lAdults" min="0" max="20" value="2"></div>
-        <div><label for="lKids">Kids</label><input type="number" id="lKids" min="0" max="20" value="1"></div>
-        <div><button class="btn primary" type="submit" id="logBtn">Add</button></div>
-      </form>
-
-      <ul class="list" id="guestList"></ul>
-      <div class="submit-row"><button type="button" class="btn gold" id="copyList">Copy guest list</button></div>
-      <p class="small" id="copyListNote" aria-live="polite"></p>
-    </div>
-  </section>
-
 </main>
 
+<footer>
+  <div class="bank" aria-hidden="false">
+    <svg viewBox="0 0 1440 180" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 70 C160 20 300 40 420 70 C560 104 660 30 820 46 C980 62 1080 108 1220 78 C1320 56 1390 50 1440 60 L1440 180 L0 180Z" fill="#dfe6f2"/>
+      <path d="M0 110 C200 70 340 92 520 112 C700 132 820 82 1000 92 C1180 102 1300 130 1440 112 L1440 180 L0 180Z" fill="#f3f6fb"/>
+    </svg>
+    <div class="friends">
+      <button class="critter" data-c="fox2" aria-label="Fox. Tap to say hello"><img src="assets/fox.png" alt=""></button>
+      <button class="critter" data-c="bunny2" aria-label="Bunny. Tap to say hello"><img src="assets/bunny.png" alt=""></button>
+      <button class="critter" data-c="squirrel2" aria-label="Squirrel. Tap to say hello"><img src="assets/squirrel.png" alt=""></button>
+      <button class="critter" data-c="hedgehog2" aria-label="Hedgehog. Tap to say hello"><img src="assets/hedgehog.png" alt=""></button>
+    </div>
+    <div class="bubble" id="footBubble" aria-hidden="true"></div>
+  </div>
+  <div class="snowfloor">
+    <p class="sign">With love, <span data-f="signature">Hannah, Gareth &amp; Lily Belle</span></p>
+    <p class="foot-note">Questions? Text <span data-f="hostName">Hannah</span> · <span data-f="hostPhone">(661) 718-6474</span></p>
+  </div>
+</footer>
+
+<script src="config.js"></script>
+<script src="event.js"></script>
 <script>
 (function(){
-  const PHONE = "+16617186474";
-  const PARTY = new Date("2027-01-09T10:00:00-08:00");
-  const DEADLINE = new Date("2026-12-02T00:00:00-08:00");
   const $ = id => document.getElementById(id);
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let EV = Object.assign({}, LB.DEFAULTS);
 
-  // Calendar link
-  const cal = new URL("https://calendar.google.com/calendar/render");
-  cal.searchParams.set("action","TEMPLATE");
-  cal.searchParams.set("text","Lily Belle's 2nd Birthday – Royal Winter Court");
-  cal.searchParams.set("dates","20270109T100000/20270109T123000");
-  cal.searchParams.set("ctz","America/Los_Angeles");
-  cal.searchParams.set("location","FunZy Indoor Playground, 20655 Soledad Canyon Rd #24, Santa Clarita, CA");
-  cal.searchParams.set("details","Little royals are welcome to dress up: princesses, dragons, fairies & knights! RSVP by Dec 1 – text Hannah (661) 718-6474.");
-  $("calLink").href = cal.toString();
-
-  // Countdown
+  /* ---------------- party details ---------------- */
+  function splitTitle(name){
+    const t = $("title"); t.textContent = "";
+    Array.from(name + "'s").forEach(ch => {
+      if (ch === " ") { t.appendChild(document.createTextNode(" ")); return; }
+      const s = document.createElement("span"); s.className = "letter"; s.textContent = ch; t.appendChild(s);
+    });
+    t.setAttribute("aria-label", name + "'s");
+  }
+  function plural(n, one, many){ return n + " " + (n === 1 ? one : many); }
+  function render(){
+    document.querySelectorAll("[data-f]").forEach(el => {
+      const k = el.dataset.f; if (k === "childName's") return;
+      if (EV[k] !== undefined) el.textContent = EV[k];
+    });
+    splitTitle(EV.childName);
+    document.title = EV.childName + "'s " + EV.partyTitle;
+    $("calMonth").textContent = LB.fmt.month(EV.date);
+    $("calDay").textContent = LB.fmt.dayNum(EV.date);
+    $("calWeek").textContent = LB.fmt.weekday(EV.date);
+    $("whenDate").textContent = LB.fmt.longDate(EV.date);
+    $("whenTime").textContent = LB.fmt.time(EV.startTime) + " – " + LB.fmt.time(EV.endTime);
+    $("rsvpByShort").textContent = LB.fmt.weekday(EV.rsvpBy) + ", " + LB.fmt.monthDay(EV.rsvpBy);
+    $("calLink").href = LB.calendarUrl(EV);
+    $("mapLink").href = LB.mapsUrl(EV);
+    $("announce").hidden = !EV.announcement;
+    $("announceText").textContent = EV.announcement || "";
+    $("fMsg").placeholder = "Happy birthday, " + EV.childName + "!";
+    countdown();
+  }
   function countdown(){
-    const now = new Date();
-    const days = Math.ceil((PARTY - now)/86400000);
-    $("countdown").textContent = days > 1 ? days + " days until the royal celebration"
-      : days === 1 ? "Tomorrow is the royal celebration!"
-      : (now < new Date(PARTY.getTime()+9000000)) ? "The royal celebration is today!" : "Thank you for celebrating with us!";
-    if (now > DEADLINE) $("deadlineNote").textContent = "The date has passed, but late replies are still welcome.";
+    const start = LB.at(EV.date, EV.startTime), end = LB.at(EV.date, EV.endTime), now = new Date();
+    const today = new Date(now.toLocaleString("en-US",{timeZone:"America/Los_Angeles"}));
+    const party = new Date(EV.date + "T00:00:00");
+    const d = Math.round((party - new Date(today.getFullYear(), today.getMonth(), today.getDate())) / 86400000);
+    const n = $("sleeps"), t = $("sleepsText");
+    if (d > 1) { n.textContent = d; t.textContent = "sleeps until the royal celebration"; n.hidden = false; }
+    else if (d === 1) { n.textContent = "1"; t.textContent = "more sleep! The party is tomorrow."; n.hidden = false; }
+    else if (now < end) { n.hidden = true; t.textContent = "The royal celebration is today!"; }
+    else { n.hidden = true; t.textContent = "Thank you for celebrating with us!"; }
+    const past = now > LB.at(EV.rsvpBy, "23:59");
+    $("rsvpLede").textContent = past ? "The reply date has passed, but late replies are still welcome." : "Let us know who's coming so we save enough cake.";
+    void start;
   }
-  countdown();
+  render();
+  LB.loadEvent().then(ev => { EV = ev; render(); setupRsvpMode(); });
 
-  // Form state
-  const state = { adults:2, kids:1 };
-  function step(key, d, min){
-    state[key] = Math.max(min, Math.min(20, state[key]+d));
-    $(key+"Out").textContent = state[key];
+  /* ---------------- stars ---------------- */
+  (function(){
+    const box = $("stars"); const n = 40;
+    for (let i = 0; i < n; i++) {
+      const s = document.createElement("i");
+      s.style.left = Math.random()*100 + "%"; s.style.top = Math.random()*100 + "%";
+      const z = Math.random(); s.style.width = s.style.height = (1 + z*2.2) + "px";
+      s.style.animationDelay = (-Math.random()*3.2) + "s"; s.style.animationDuration = (2.4 + Math.random()*2.6) + "s";
+      box.appendChild(s);
+    }
+  })();
+
+  /* ---------------- snowfall ---------------- */
+  const snow = $("snow"), sctx = snow.getContext("2d");
+  let flakes = [], W = 0, H = 0, DPR = 1, wind = 0, windTarget = 0;
+  function sizeCanvases(){
+    DPR = Math.min(2, window.devicePixelRatio || 1); W = innerWidth; H = innerHeight;
+    [snow, fx].forEach(c => { c.width = W*DPR; c.height = H*DPR; c.getContext("2d").setTransform(DPR,0,0,DPR,0,0); });
+    const target = Math.min(170, Math.round(W*H/7000));
+    while (flakes.length < target) flakes.push(newFlake(true));
+    flakes.length = target;
+    if (reduce) drawSnow();
   }
-  $("adultsMinus").onclick = () => step("adults",-1,0);
-  $("adultsPlus").onclick = () => step("adults",1,0);
-  $("kidsMinus").onclick = () => step("kids",-1,0);
-  $("kidsPlus").onclick = () => step("kids",1,0);
+  function newFlake(anywhere){
+    const z = Math.random();
+    return { x: Math.random()*W, y: anywhere ? Math.random()*H : -10, r: .8 + z*2.6, z, vy: .25 + z*1.0, ph: Math.random()*6.28, a: .35 + z*.55 };
+  }
+  let lastScrollY = scrollY, scrollPush = 0;
+  function drawSnow(){
+    sctx.clearRect(0,0,W,H);
+    for (const f of flakes) {
+      sctx.globalAlpha = f.a; sctx.beginPath(); sctx.arc(f.x, f.y, f.r, 0, 6.283); sctx.fillStyle = "#fff"; sctx.fill();
+    }
+    sctx.globalAlpha = 1;
+  }
+  function tickSnow(){
+    wind += (windTarget - wind) * .02;
+    scrollPush *= .9;
+    for (const f of flakes) {
+      f.ph += .01 + f.z*.01;
+      f.x += Math.sin(f.ph)*.35 + wind*(.4 + f.z);
+      f.y += f.vy - scrollPush*(.3 + f.z*.9);
+      if (f.y > H + 10) { Object.assign(f, newFlake(false)); }
+      if (f.y < -20) { f.y = H + 5; }
+      if (f.x > W + 10) f.x = -10; if (f.x < -10) f.x = W + 10;
+    }
+    drawSnow();
+    requestAnimationFrame(tickSnow);
+  }
+
+  /* ---------------- sparkle fx ---------------- */
+  const fx = $("fx"), fctx = fx.getContext("2d");
+  let parts = [], fxRunning = false;
+  const COLORS = ["#e6c77f","#fff3c9","#ffffff","#cfe0ff","#b08a42"];
+  function burst(x, y, n, opts){
+    if (reduce) return;
+    opts = opts || {};
+    for (let i = 0; i < n; i++) {
+      const ang = opts.up ? (-Math.PI/2 + (Math.random()-.5)*2.2) : Math.random()*6.283;
+      const sp = (opts.speed || 4) * (.4 + Math.random());
+      parts.push({ x, y, vx: Math.cos(ang)*sp, vy: Math.sin(ang)*sp, g: opts.gravity ?? .08, life: 1, decay: .012 + Math.random()*.02,
+        size: 2 + Math.random()*4, rot: Math.random()*6.28, vr: (Math.random()-.5)*.3, kind: Math.random() < (opts.flakes ?? .35) ? "flake" : "star", c: COLORS[(Math.random()*COLORS.length)|0] });
+    }
+    if (!fxRunning) { fxRunning = true; requestAnimationFrame(tickFx); }
+  }
+  function star(ctx, r){ ctx.beginPath(); for (let i = 0; i < 8; i++){ const rr = i%2 ? r*.38 : r; const a = i*Math.PI/4; ctx.lineTo(Math.cos(a)*rr, Math.sin(a)*rr); } ctx.closePath(); ctx.fill(); }
+  function flake(ctx, r){ ctx.lineWidth = Math.max(1, r*.28); ctx.lineCap = "round"; for (let i = 0; i < 3; i++){ ctx.rotate(Math.PI/3); ctx.beginPath(); ctx.moveTo(-r,0); ctx.lineTo(r,0); ctx.stroke(); } }
+  function tickFx(){
+    fctx.clearRect(0,0,W,H);
+    parts = parts.filter(p => p.life > 0);
+    for (const p of parts) {
+      p.vx *= .985; p.vy = p.vy*.985 + p.g; p.x += p.vx; p.y += p.vy; p.rot += p.vr; p.life -= p.decay;
+      fctx.save(); fctx.globalAlpha = Math.max(0, p.life); fctx.translate(p.x, p.y); fctx.rotate(p.rot);
+      fctx.fillStyle = p.c; fctx.strokeStyle = p.c;
+      p.kind === "star" ? star(fctx, p.size*1.4) : flake(fctx, p.size*1.3);
+      fctx.restore();
+    }
+    if (parts.length) requestAnimationFrame(tickFx); else { fxRunning = false; fctx.clearRect(0,0,W,H); }
+  }
+
+  sizeCanvases();
+  addEventListener("resize", sizeCanvases);
+  if (!reduce) requestAnimationFrame(tickSnow);
+
+  /* ---------------- creatures ---------------- */
+  const LINES = {
+    fox:      ["Yip! See you at the party!", "I already picked my knight costume.", "Is there cake? I heard there's cake."],
+    bunny:    ["Hop on over!", "I'll save you a spot by the slide!", "Two! She's turning TWO!"],
+    owl:      ["Hoo's coming? You are!", "Hoo-ray for Lily Belle!", "I'm keeping watch over the castle."],
+    squirrel: ["I'm bringing pinecones. Is that a gift?", "Saving you a snack!", "Did someone say party?"],
+    hedgehog: ["Wheee!", "Snuggle up, it's chilly!", "I'm prickly but I'm friendly."],
+    crown:    ["Long live Lily Belle!", "Fit for a two-year-old queen!", "✦ sparkle sparkle ✦"]
+  };
+  const MOVES = { fox:"hop", bunny:"hop", owl:"turn", squirrel:"wiggle", hedgehog:"roll", crown:"rise" };
+  const counters = {};
+  function lineFor(kind){ const arr = LINES[kind]; counters[kind] = ((counters[kind] ?? -1) + 1) % arr.length; return arr[counters[kind]]; }
+  function play(el, move){
+    el.classList.remove("hop","wiggle","turn","roll","rise","peek","jump");
+    void el.offsetWidth; el.classList.add(move);
+    clearTimeout(el._t); el._t = setTimeout(() => el.classList.remove(move), 1900);
+  }
+  function showBubble(bubble, host, el, text){
+    const hb = host.getBoundingClientRect(), eb = el.getBoundingClientRect();
+    let x = eb.left + eb.width/2 - hb.left;
+    bubble.textContent = text;
+    const half = Math.min(bubble.offsetWidth/2 + 6, hb.width/2);
+    x = Math.max(half, Math.min(hb.width - half, x));
+    bubble.style.left = x + "px";
+    bubble.style.top = (eb.top - hb.top) + "px";
+    bubble.classList.add("show");
+    $("say").textContent = text;
+    clearTimeout(bubble._t); bubble._t = setTimeout(() => bubble.classList.remove("show"), 2400);
+  }
+  let crownTaps = [];
+  document.querySelectorAll(".critter").forEach(el => {
+    el.addEventListener("click", ev => {
+      ev.stopPropagation();
+      const kind = el.dataset.c.replace(/2$/, "");
+      play(el, MOVES[kind]);
+      const host = el.closest(".scene") || el.closest(".bank") || el.closest(".parchment");
+      const bubble = el.closest(".scene") ? $("sceneBubble") : el.closest(".bank") ? $("footBubble") : ensurePerchBubble();
+      showBubble(bubble, host, el, lineFor(kind));
+      const r = el.getBoundingClientRect();
+      burst(r.left + r.width/2, r.top + r.height*.35, kind === "crown" ? 46 : 18, { speed: kind === "crown" ? 6 : 3.5, up: kind === "crown" });
+      if (kind === "crown") {
+        const now = Date.now(); crownTaps = crownTaps.filter(t => now - t < 4000); crownTaps.push(now);
+        if (crownTaps.length >= 5) { crownTaps = []; setTimeout(() => location.href = "castle-keep/", 650); }
+      }
+    });
+  });
+  let perchBubble = null;
+  function ensurePerchBubble(){
+    if (!perchBubble) { perchBubble = document.createElement("div"); perchBubble.className = "bubble"; perchBubble.setAttribute("aria-hidden","true"); $("rsvp").appendChild(perchBubble); }
+    return perchBubble;
+  }
+
+  // Tap empty sky/forest for a little sparkle
+  ["sky","scene"].forEach(id => $(id).addEventListener("pointerdown", ev => {
+    if (ev.target.closest(".critter")) return;
+    burst(ev.clientX, ev.clientY, 12, { speed: 2.6, gravity: .03, flakes: .6 });
+  }));
+
+  // Owl follows the pointer; scroll stirs the wind and wakes the forest
+  const sceneOwl = document.querySelector('[data-c="owl"]');
+  const perchOwl = document.querySelector('[data-c="owl2"]');
+  addEventListener("pointermove", ev => {
+    if (reduce) return;
+    [sceneOwl, perchOwl].forEach(o => {
+      const r = o.getBoundingClientRect(); const dx = ev.clientX - (r.left + r.width/2);
+      o.style.setProperty("--tilt", Math.max(-12, Math.min(12, dx/40)) + "deg");
+    });
+  }, { passive: true });
+
+  const sceneEl = $("scene");
+  let sceneVisible = true, lastScrollAt = 0;
+  new IntersectionObserver(es => { sceneVisible = es[0].isIntersecting; }, { threshold: .15 }).observe(sceneEl);
+  addEventListener("scroll", () => {
+    const y = scrollY, dy = y - lastScrollY; lastScrollY = y;
+    scrollPush = Math.max(-6, Math.min(6, scrollPush + dy*.04));
+    windTarget = Math.max(-1.2, Math.min(1.2, dy*.05));
+    clearTimeout(window._wt); window._wt = setTimeout(() => windTarget = 0, 200);
+    if (reduce) return;
+    const now = Date.now();
+    if (sceneVisible && now - lastScrollAt > 1600) {
+      // startled! a couple of creatures react when you start scrolling
+      play(document.querySelector('[data-c="bunny"]'), "hop");
+      setTimeout(() => play(document.querySelector('[data-c="squirrel"]'), "wiggle"), 180);
+    }
+    lastScrollAt = now;
+    const tilt = Math.max(-10, Math.min(10, dy*.8));
+    sceneOwl.style.setProperty("--tilt", tilt + "deg");
+    document.querySelector('[data-c="fox"]').style.setProperty("--lift", Math.min(0, -Math.abs(dy)*.15) + "%");
+    clearTimeout(window._ft); window._ft = setTimeout(() => {
+      sceneOwl.style.setProperty("--tilt", "0deg");
+      document.querySelector('[data-c="fox"]').style.setProperty("--lift", "0%");
+    }, 260);
+  }, { passive: true });
+
+  // Footer friends pop up to wave when you reach the bottom
+  const friends = document.querySelectorAll(".friends .critter");
+  new IntersectionObserver(es => {
+    if (!es[0].isIntersecting || reduce) return;
+    friends.forEach((f, i) => setTimeout(() => play(f, "hop"), i*140));
+  }, { threshold: .6 }).observe(document.querySelector(".friends"));
+
+  // Idle: a random forest friend fidgets now and then
+  if (!reduce) setInterval(() => {
+    if (!sceneVisible || document.hidden) return;
+    const pool = Array.from(document.querySelectorAll(".scene .critter")).filter(c => !/hop|wiggle|turn|roll|rise/.test(c.className));
+    const c = pool[(Math.random()*pool.length)|0]; if (c) play(c, "peek");
+  }, 3200);
+
+  /* ---------------- RSVP ---------------- */
+  const state = { adults: 2, kids: 1 };
+  function drawCrowns(){
+    const box = $("crowns"); box.textContent = "";
+    for (let i = 0; i < Math.min(state.kids, 12); i++) { const im = document.createElement("img"); im.src = "assets/crown.png"; im.alt = ""; box.appendChild(im); }
+  }
+  document.querySelectorAll("[data-step]").forEach(b => b.addEventListener("click", () => {
+    const k = b.dataset.step; state[k] = Math.max(0, Math.min(20, state[k] + Number(b.dataset.d)));
+    $(k + "Out").textContent = state[k];
+    if (k === "kids") drawCrowns();
+    if (Number(b.dataset.d) > 0) { const r = b.getBoundingClientRect(); burst(r.left + r.width/2, r.top, 6, { speed: 2.4, up: true }); }
+  }));
+  drawCrowns();
   document.querySelectorAll('input[name=attending]').forEach(r => r.addEventListener("change", () => {
     $("yesFields").hidden = !$("attYes").checked;
+    const r2 = r.parentElement.getBoundingClientRect();
+    if ($("attYes").checked && r.value === "yes") burst(r2.left + r2.width/2, r2.top + 30, 22, { speed: 4, up: true });
   }));
 
   function readForm(){
-    const att = $("attYes").checked ? "yes" : $("attNo").checked ? "no" : "";
-    return {
-      name: $("fName").value.trim(),
-      attending: att,
-      adults: att === "yes" ? state.adults : 0,
-      kids: att === "yes" ? state.kids : 0,
-      kidNames: att === "yes" ? $("fKidNames").value.trim() : "",
-      notes: att === "yes" ? $("fNotes").value.trim() : "",
-      message: $("fMsg").value.trim()
-    };
+    const yes = $("attYes").checked, att = yes ? "yes" : $("attNo").checked ? "no" : "";
+    return { name: $("fName").value.trim(), attending: att,
+      adults: yes ? state.adults : 0, kids: yes ? state.kids : 0,
+      kidNames: yes ? $("fKidNames").value.trim() : "", notes: yes ? $("fNotes").value.trim() : "",
+      phone: $("fPhone").value.trim(), message: $("fMsg").value.trim() };
   }
   function fillForm(r){
     $("fName").value = r.name || "";
-    if (r.attending === "yes") $("attYes").checked = true;
-    if (r.attending === "no") $("attNo").checked = true;
+    $("attYes").checked = r.attending === "yes"; $("attNo").checked = r.attending === "no";
     $("yesFields").hidden = r.attending !== "yes";
-    if (typeof r.adults === "number" && r.attending === "yes") { state.adults = r.adults; $("adultsOut").textContent = r.adults; }
-    if (typeof r.kids === "number" && r.attending === "yes") { state.kids = r.kids; $("kidsOut").textContent = r.kids; }
-    $("fKidNames").value = r.kidNames || "";
-    $("fNotes").value = r.notes || "";
-    $("fMsg").value = r.message || "";
+    if (r.attending === "yes") { state.adults = r.adults; state.kids = r.kids; $("adultsOut").textContent = r.adults; $("kidsOut").textContent = r.kids; drawCrowns(); }
+    $("fKidNames").value = r.kidNames || ""; $("fNotes").value = r.notes || "";
+    $("fPhone").value = r.phone || ""; $("fMsg").value = r.message || "";
   }
-  function plural(n, one, many){ return n + " " + (n === 1 ? one : many); }
   function summary(r){
-    return r.attending === "yes"
-      ? "Coming: " + plural(r.adults,"grown-up","grown-ups") + " and " + plural(r.kids,"little royal","little royals")
-      : "Can't make it";
+    return r.attending === "yes" ? "Coming: " + plural(r.adults,"grown-up","grown-ups") + " and " + plural(r.kids,"little royal","little royals")
+      : "Not able to make it. We'll miss you!";
   }
   function smsText(r){
-    const lines = ["RSVP for Lily Belle's Royal Winter Court (Jan 9)", "From: " + r.name];
+    const L = ["RSVP for " + EV.childName + "'s " + EV.partyTitle + " (" + LB.fmt.monthDay(EV.date) + ")", "From: " + r.name];
     if (r.attending === "yes") {
-      lines.push("We'll be there! " + plural(r.adults,"adult","adults") + ", " + plural(r.kids,"child","children"));
-      if (r.kidNames) lines.push("Kids: " + r.kidNames);
-      if (r.notes) lines.push("Note: " + r.notes);
-    } else {
-      lines.push("Sorry, we can't make it.");
+      L.push("We'll be there! " + plural(r.adults,"adult","adults") + ", " + plural(r.kids,"child","children"));
+      if (r.kidNames) L.push("Kids: " + r.kidNames);
+      if (r.notes) L.push("Note: " + r.notes);
+    } else L.push("Sorry, we can't make it.");
+    if (r.message) L.push("For " + EV.childName + ": " + r.message);
+    return L.join("\n");
+  }
+
+  const KEY = "lb2-rsvp";
+  function stored(){ try { return JSON.parse(localStorage.getItem(KEY) || "null"); } catch(e){ return null; } }
+  function store(v){ try { localStorage.setItem(KEY, JSON.stringify(v)); } catch(e){} }
+  function replyId(){ const s = stored(); if (s && s.replyId) return s.replyId; return "r" + Date.now().toString(36) + Math.random().toString(36).slice(2,7); }
+
+  function show(which){
+    ["rsvpForm","donePanel","textPanel","closedPanel"].forEach(id => $(id).hidden = id !== which);
+  }
+  function celebrate(){
+    const b = $("rsvp").getBoundingClientRect();
+    burst(b.left + b.width*.3, b.top + 120, 50, { speed: 7, up: true, gravity: .12 });
+    setTimeout(() => burst(b.left + b.width*.7, b.top + 120, 50, { speed: 7, up: true, gravity: .12 }), 180);
+    play(perchOwl, "turn");
+    friends.forEach((f, i) => setTimeout(() => play(f, "jump"), i*120));
+  }
+  function setupRsvpMode(){
+    if (!EV.rsvpOpen) { show("closedPanel"); return; }
+    const s = stored();
+    if (s && s.reply) {
+      fillForm(s.reply);
+      if (s.sent && LB.formReady()) {
+        $("doneTitle").textContent = "Welcome back!";
+        $("doneSummary").textContent = summary(s.reply);
+        show("donePanel");
+      }
     }
-    if (r.message) lines.push("For Lily Belle: " + r.message);
-    return lines.join("\n");
   }
-
-  // Remember a guest's draft in this browser only
-  const LS = "lb-royal-rsvp";
-  try { const saved = JSON.parse(localStorage.getItem(LS) || "null"); if (saved) fillForm(saved); } catch(e){}
-  function remember(r){ try { localStorage.setItem(LS, JSON.stringify(r)); } catch(e){} }
-
-  // Capabilities
-  let db = null, uid = null, canSave = null, myRef = null;
-
-  function showText(r){
-    $("savedPanel").hidden = true;
-    $("smsPreview").textContent = smsText(r);
-    $("smsLink").href = "sms:" + PHONE + "?&body=" + encodeURIComponent(smsText(r));
-    $("copyNote").textContent = "";
-    $("textPanel").hidden = false;
-    $("textPanel").scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block:"nearest"});
-  }
-  function showSaved(r){
-    $("textPanel").hidden = true;
-    $("savedText").textContent = "Your RSVP is saved. " + summary(r) + ".";
-    $("savedPanel").hidden = false;
-  }
-
-  $("copyBtn").onclick = async () => {
-    try { await navigator.clipboard.writeText($("smsPreview").textContent); $("copyNote").textContent = "Copied. Paste it into a text to (661) 718-6474."; }
-    catch(e){ $("copyNote").textContent = "Couldn't copy here. Select the message above and copy it by hand."; }
-  };
+  setupRsvpMode();
 
   $("rsvpForm").addEventListener("submit", async ev => {
     ev.preventDefault();
-    const r = readForm();
-    const err = $("formErr");
-    if (!r.name) { err.textContent = "Please add your name so Hannah knows who's replying."; err.hidden = false; $("fName").focus(); return; }
-    if (!r.attending) { err.textContent = "Please choose whether you can come."; err.hidden = false; return; }
-    if (r.attending === "yes" && r.adults + r.kids === 0) { err.textContent = "Add at least one grown-up or little royal."; err.hidden = false; return; }
+    const r = readForm(), err = $("formErr");
+    const fail = (msg, focus) => { err.textContent = msg; err.hidden = false; if (focus) focus.focus(); };
+    if (!r.name) return fail("Please add your name so we know who's replying.", $("fName"));
+    if (!r.attending) return fail("Please choose whether you can come.");
+    if (r.attending === "yes" && r.adults + r.kids === 0) return fail("Add at least one grown-up or little royal.");
     err.hidden = true;
-    remember(r);
-    if (myRef && canSave !== false) {
-      const btn = $("submitBtn"); btn.disabled = true; btn.textContent = "Sending…";
+    const id = replyId();
+    store({ reply: r, replyId: id, sent: false });
+
+    if (LB.formReady()) {
+      const btn = $("submitBtn"); btn.disabled = true; btn.textContent = "Sending by royal owl…";
       try {
-        await myRef.set(Object.assign({}, r, { source:"online", updatedAt: new Date().toISOString() }));
-        showSaved(r);
-        btn.textContent = "Update my RSVP";
+        await LB.submitRsvp(Object.assign({ replyId: id }, r));
+        store({ reply: r, replyId: id, sent: true });
+        $("doneTitle").textContent = r.attending === "yes" ? "Huzzah, you're on the list!" : "Thank you for letting us know";
+        $("doneSummary").textContent = summary(r);
+        show("donePanel"); celebrate();
       } catch(e) {
-        canSave = false;
-        btn.textContent = "Send my RSVP";
-        showText(r);
-      } finally { btn.disabled = false; }
+        textFallback(r);
+      } finally { btn.disabled = false; btn.textContent = "Send my RSVP"; }
     } else {
-      showText(r);
+      textFallback(r);
     }
+    $("rsvp").scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
   });
-
-  // Host view
-  let online = [], logged = [], hostReady = false;
-  function esc(s){ return String(s == null ? "" : s); }
-  function renderHost(){
-    const all = online.map(d => Object.assign({ _src:"online" }, d)).concat(logged.map(d => Object.assign({ _src:"text" }, d)));
-    all.sort((a,b) => (b.updatedAt||"").localeCompare(a.updatedAt||""));
-    const yes = all.filter(r => r.attending === "yes");
-    $("tFam").textContent = yes.length;
-    $("tAdults").textContent = yes.reduce((s,r) => s + (Number(r.adults)||0), 0);
-    $("tKids").textContent = yes.reduce((s,r) => s + (Number(r.kids)||0), 0);
-    $("tNo").textContent = all.filter(r => r.attending === "no").length;
-    const ul = $("guestList"); ul.textContent = "";
-    if (!all.length) {
-      const li = document.createElement("li"); li.className = "empty"; li.textContent = "No replies yet. They'll appear here as they come in."; ul.appendChild(li);
-    }
-    all.forEach(r => {
-      const li = document.createElement("li"); li.className = "row" + (r.attending === "no" ? " no" : "");
-      const pill = document.createElement("span"); pill.className = "pill"; pill.textContent = r.attending === "yes" ? "Coming" : "Declined";
-      const mid = document.createElement("div");
-      const who = document.createElement("div"); who.className = "who"; who.textContent = esc(r.name) || "Unnamed guest";
-      const meta = document.createElement("div"); meta.className = "meta";
-      const bits = [];
-      if (r.attending === "yes") bits.push(plural(Number(r.adults)||0,"adult","adults"), plural(Number(r.kids)||0,"kid","kids"));
-      bits.push(r._src === "online" ? "via this page" : "by text");
-      if (r.updatedAt) { const d = new Date(r.updatedAt); if (!isNaN(d)) bits.push(d.toLocaleDateString(undefined,{month:"short",day:"numeric"})); }
-      meta.textContent = bits.join(" · ");
-      mid.append(who, meta);
-      [["kidNames","Kids: "],["notes","Note: "],["message","Wish: "]].forEach(([k,p]) => {
-        if (r[k]) { const n = document.createElement("div"); n.className = "note"; n.textContent = p + esc(r[k]); mid.appendChild(n); }
-      });
-      const right = document.createElement("div");
-      const del = document.createElement("button"); del.type = "button"; del.className = "link"; del.textContent = "Remove";
-      del.setAttribute("aria-label","Remove " + (esc(r.name) || "this reply"));
-      del.onclick = async () => {
-        del.disabled = true;
-        try { await db.doc((r._src === "online" ? "rsvps/" : "hostlog/") + r._id).delete(); }
-        catch(e){ del.disabled = false; $("hostStatus").textContent = "Couldn't remove that reply. Try again."; }
-      };
-      right.appendChild(del);
-      li.append(pill, mid, right); ul.appendChild(li);
-    });
+  function textFallback(r){
+    const body = smsText(r);
+    $("smsPreview").textContent = body;
+    $("smsLink").href = "sms:" + LB.telHref(EV.hostPhone) + "?&body=" + encodeURIComponent(body);
+    $("copyNote").textContent = "";
+    show("textPanel"); celebrate();
   }
-  function listText(){
-    const all = online.concat(logged);
-    const yes = all.filter(r => r.attending === "yes"), no = all.filter(r => r.attending === "no");
-    const A = yes.reduce((s,r)=>s+(Number(r.adults)||0),0), K = yes.reduce((s,r)=>s+(Number(r.kids)||0),0);
-    const out = ["Lily Belle's Royal Winter Court – guest list", yes.length + " families coming · " + A + " adults · " + K + " kids · " + no.length + " declined", "", "COMING"];
-    yes.forEach(r => out.push("- " + r.name + " (" + (r.adults||0) + " adults, " + (r.kids||0) + " kids)" + (r.notes ? " – " + r.notes : "")));
-    out.push("", "DECLINED"); no.forEach(r => out.push("- " + r.name));
-    return out.join("\n");
-  }
-  $("copyList").onclick = async () => {
-    try { await navigator.clipboard.writeText(listText()); $("copyListNote").textContent = "Guest list copied."; }
-    catch(e){ $("copyListNote").textContent = "Couldn't copy here."; }
+  $("changeBtn").onclick = () => { show("rsvpForm"); $("fName").focus(); };
+  $("backBtn").onclick = () => show("rsvpForm");
+  $("copyBtn").onclick = async () => {
+    try { await navigator.clipboard.writeText($("smsPreview").textContent); $("copyNote").textContent = "Copied! Paste it into a text to " + EV.hostPhone + "."; }
+    catch(e){ $("copyNote").textContent = "Couldn't copy here. Press and hold the message above to copy it."; }
   };
-  $("logForm").addEventListener("submit", async ev => {
-    ev.preventDefault();
-    const name = $("lName").value.trim(); if (!name) { $("lName").focus(); return; }
-    const att = $("lAtt").value;
-    const rec = { name, attending: att, adults: att === "yes" ? Math.max(0, Number($("lAdults").value)||0) : 0, kids: att === "yes" ? Math.max(0, Number($("lKids").value)||0) : 0, source:"text", updatedAt:new Date().toISOString() };
-    const btn = $("logBtn"); btn.disabled = true;
-    try { await db.collection("hostlog").add(rec); $("lName").value = ""; $("hostStatus").textContent = ""; }
-    catch(e){ $("hostStatus").textContent = e && e.code === "quota_exceeded" ? "The guest list is full." : "Couldn't save that reply. Try again."; }
-    finally { btn.disabled = false; }
-  });
-
-  function startHost(){
-    $("host").hidden = false;
-    renderHost();
-    $("hostStatus").textContent = "Loading replies…";
-    const timer = setTimeout(() => { $("hostStatus").textContent = "Replies can't be reached right now; this list may be out of date."; }, 10000);
-    let got = 0;
-    const done = () => { if (++got >= 2) { clearTimeout(timer); $("hostStatus").textContent = ""; } };
-    let a = false, b = false;
-    db.collection("rsvps").onSnapshot(s => { online = s.docs.map(d => Object.assign({ _id:d.id }, d.data())); renderHost(); if (!s.metadata.fromCache && !a) { a = true; done(); } }, () => { if (!a) { a = true; done(); } });
-    db.collection("hostlog").onSnapshot(s => { logged = s.docs.map(d => Object.assign({ _id:d.id }, d.data())); renderHost(); if (!s.metadata.fromCache && !b) { b = true; done(); } }, () => { if (!b) { b = true; done(); } });
-  }
-
-  (async () => {
-    if (!window.claude || !window.claude.use) return;
-    let user = null;
-    try { [db, user] = await Promise.all([claude.use("db"), claude.use("user")]); } catch(e){ return; }
-    if (!db) return;
-    uid = user ? await user.id() : null;
-    const isHost = user ? (await user.isOwner()) || (await user.canEdit()) : false;
-    const w = user ? await user.can("data.write") : null;
-    if (uid && w !== false) {
-      canSave = w;
-      myRef = db.doc("rsvps/" + uid);
-      try {
-        const snap = await myRef.get();
-        if (snap.exists) { const r = snap.data(); fillForm(r); showSaved(r); $("submitBtn").textContent = "Update my RSVP"; }
-      } catch(e){}
-    }
-    if (isHost) startHost();
-  })();
 })();
 </script>
 </body>
