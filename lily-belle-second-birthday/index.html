@@ -181,6 +181,15 @@ fieldset{border:0;margin:0;padding:0;min-width:0}
 .stepper button:hover{background:var(--gold-bright)}
 .stepper output{flex:1;text-align:center;font-family:var(--display);font-weight:800;font-size:24px;color:var(--ink);font-variant-numeric:tabular-nums}
 .crowns{display:flex;flex-wrap:wrap;gap:3px;min-height:22px;margin-top:8px}
+.kids-box{margin-top:22px;background:#f4ecd8;border-radius:14px;padding:16px}
+.kids-box legend{float:left;width:100%;padding:0;margin-bottom:4px}
+.kids-box legend + *{clear:both}
+.kid-list{display:grid;gap:10px}
+.kid-row{display:grid;grid-template-columns:30px 1fr 92px;gap:8px;align-items:center;animation:pop .35s cubic-bezier(.3,1.6,.5,1)}
+.kid-row img{width:28px;height:auto}
+.kid-row input{padding:10px 12px}
+.kid-row label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.kid-row input.missing{border-color:var(--berry);box-shadow:0 0 0 4px rgba(156,70,54,.12)}
 .crowns img{width:22px;height:auto;animation:pop .4s cubic-bezier(.3,1.6,.5,1)}
 @keyframes pop{from{transform:scale(0) rotate(-30deg)}}
 .yes-only[hidden]{display:none}
@@ -340,13 +349,14 @@ footer{position:relative;z-index:3;margin-top:70px;text-align:center;color:var(-
                 <output id="kidsOut" aria-live="polite">1</output>
                 <button type="button" data-step="kids" data-d="1" aria-label="One more child">+</button>
               </div>
-              <div class="crowns" id="crowns" aria-hidden="true"></div>
+              <div class="crowns" id="crowns" aria-hidden="true" hidden></div>
             </div>
           </div>
-          <div style="margin-top:22px">
-            <label for="fKidNames">Little royals' names &amp; ages <span class="opt">(optional)</span></label>
-            <input type="text" id="fKidNames" maxlength="160" placeholder="e.g. Mia (3), Leo (1)">
-          </div>
+          <fieldset class="kids-box" id="kidsBox">
+            <legend class="legend">Tell us about your little royals</legend>
+            <p class="opt" style="margin:-2px 0 10px">So we know which little royals are coming.</p>
+            <div class="kid-list" id="kidList"></div>
+          </fieldset>
           <div style="margin-top:22px">
             <label for="fNotes">Allergies or anything we should know <span class="opt">(optional)</span></label>
             <input type="text" id="fNotes" maxlength="200" placeholder="e.g. nut allergy">
@@ -664,7 +674,31 @@ footer{position:relative;z-index:3;margin-top:70px;text-align:center;color:var(-
 
   /* ---------------- RSVP ---------------- */
   const state = { adults: 2, kids: 1 };
+  function drawKids(prefill){
+    const list = $("kidList");
+    const old = prefill || Array.from(list.querySelectorAll(".kid-row")).map(row => ({ name: row.querySelector(".kn").value, age: row.querySelector(".ka").value }));
+    list.textContent = "";
+    $("kidsBox").hidden = state.kids === 0;
+    for (let i = 0; i < Math.min(state.kids, 20); i++) {
+      const v = old[i] || { name: "", age: "" };
+      const row = document.createElement("div"); row.className = "kid-row";
+      const ic = document.createElement("img"); ic.src = "assets/crown.png"; ic.alt = "";
+      const ln = document.createElement("label"); ln.htmlFor = "kidName" + i; ln.textContent = "Child " + (i + 1) + " name";
+      const n = document.createElement("input"); n.type = "text"; n.id = "kidName" + i; n.className = "kn"; n.maxLength = 40; n.placeholder = "Child " + (i + 1) + "'s name"; n.value = v.name; n.autocomplete = "off";
+      n.addEventListener("input", () => n.classList.remove("missing"));
+      const la = document.createElement("label"); la.htmlFor = "kidAge" + i; la.textContent = "Child " + (i + 1) + " age";
+      const a = document.createElement("input"); a.type = "text"; a.id = "kidAge" + i; a.className = "ka"; a.maxLength = 12; a.placeholder = "Age"; a.inputMode = "numeric"; a.value = v.age;
+      row.append(ic, ln, n, la, a); list.appendChild(row);
+    }
+  }
+  function kidsFromForm(){
+    return Array.from(document.querySelectorAll("#kidList .kid-row")).map(row => ({ name: row.querySelector(".kn").value.trim(), age: row.querySelector(".ka").value.trim() }));
+  }
+  function parseKids(str){
+    return String(str || "").split(/,\s*/).filter(Boolean).map(part => { const m = /^(.*?)\s*\(([^)]*)\)\s*$/.exec(part); return m ? { name: m[1], age: m[2] } : { name: part, age: "" }; });
+  }
   function drawCrowns(){
+    drawKids();
     const box = $("crowns"); box.textContent = "";
     for (let i = 0; i < Math.min(state.kids, 12); i++) { const im = document.createElement("img"); im.src = "assets/crown.png"; im.alt = ""; box.appendChild(im); }
   }
@@ -685,15 +719,15 @@ footer{position:relative;z-index:3;margin-top:70px;text-align:center;color:var(-
     const yes = $("attYes").checked, att = yes ? "yes" : $("attNo").checked ? "no" : "";
     return { name: $("fName").value.trim(), attending: att,
       adults: yes ? state.adults : 0, kids: yes ? state.kids : 0,
-      kidNames: yes ? $("fKidNames").value.trim() : "", notes: yes ? $("fNotes").value.trim() : "",
+      kidNames: yes ? kidsFromForm().filter(k => k.name).map(k => k.name + (k.age ? " (" + k.age + ")" : "")).join(", ") : "", notes: yes ? $("fNotes").value.trim() : "",
       phone: $("fPhone").value.trim(), message: $("fMsg").value.trim() };
   }
   function fillForm(r){
     $("fName").value = r.name || "";
     $("attYes").checked = r.attending === "yes"; $("attNo").checked = r.attending === "no";
     $("yesFields").hidden = r.attending !== "yes";
-    if (r.attending === "yes") { state.adults = r.adults; state.kids = r.kids; $("adultsOut").textContent = r.adults; $("kidsOut").textContent = r.kids; drawCrowns(); }
-    $("fKidNames").value = r.kidNames || ""; $("fNotes").value = r.notes || "";
+    if (r.attending === "yes") { state.adults = r.adults; state.kids = r.kids; $("adultsOut").textContent = r.adults; $("kidsOut").textContent = r.kids; drawKids(parseKids(r.kidNames)); drawCrowns(); }
+    $("fNotes").value = r.notes || "";
     $("fPhone").value = r.phone || ""; $("fMsg").value = r.message || "";
   }
   function summary(r){
@@ -747,6 +781,10 @@ footer{position:relative;z-index:3;margin-top:70px;text-align:center;color:var(-
     if (!r.name) return fail("Please add your name so we know who's replying.", $("fName"));
     if (!r.attending) return fail("Please choose whether you can come.");
     if (r.attending === "yes" && r.adults + r.kids === 0) return fail("Add at least one grown-up or little royal.");
+    if (r.attending === "yes" && r.kids > 0) {
+      const missing = Array.from(document.querySelectorAll("#kidList .kn")).filter(n => !n.value.trim());
+      if (missing.length) { missing.forEach(n => n.classList.add("missing")); return fail(r.kids === 1 ? "Please add your child's name." : "Please add each child's name.", missing[0]); }
+    }
     err.hidden = true;
     const id = replyId();
     store({ reply: r, replyId: id, sent: false });
